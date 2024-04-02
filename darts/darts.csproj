@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="drotik_textura.png" />
+    <None Remove="fon.jpg" />
+    <None Remove="gradient.png" />
+    <None Remove="knopka2.png" />
+    <None Remove="mishen.png" />
+    <None Remove="strelka.png" />
+    <None Remove="target2.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="drotik_textura.png" />
+    <Resource Include="fon.jpg" />
+    <Resource Include="gradient.png" />
+    <Resource Include="knopka2.png" />
+    <Resource Include="mishen.png" />
+    <Resource Include="strelka.png" />
+    <Resource Include="target2.png" />
+  </ItemGroup>
+
+</Project>
