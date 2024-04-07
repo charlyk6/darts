@@ -54,13 +54,10 @@ namespace darts
                     d.stayInvisibe();
                 }
             }
-            //drotiks[throwCnt].initFlyAnimation();
-            //drotiks[throwCnt].beginFlyAnimation();
 
             drotiks[throwCnt].do_throw(x, target.getY());
             points = target.getPoints((int)(drotiks[throwCnt].getX() + drotiks[throwCnt].drotik.Width/2), (int)(drotiks[throwCnt].getY() + drotiks[throwCnt].drotik.Height/2));
             throwCnt++;
-            
         }
     }
 }

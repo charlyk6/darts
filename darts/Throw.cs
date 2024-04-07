@@ -26,6 +26,7 @@ namespace darts
         public double normalizeY(double y, double y0)
         {
             return y0 - y;
+            // кто прочитал тот сдохнет
         }
     }
 }
