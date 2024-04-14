@@ -1,0 +1,67 @@
+﻿<Page x:Class="darts.Pages.Games.GamePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:darts.Pages.Games"
+      mc:Ignorable="d"
+      Title="Дартс" Width="1350" Height="800"
+      KeyDown="keyDown"
+      >
+    <Page.Background>
+        <ImageBrush ImageSource="\Resources\fon.jpg" Stretch="Fill" />
+    </Page.Background>
+    <Grid>
+        <Image x:Name="target" HorizontalAlignment="Left" Height="350" Margin="704,30,0,0" VerticalAlignment="Top" Width="350" Source="/Resources/target2.png"/>
+
+        <Image x:Name="powerGradient" HorizontalAlignment="Left" Height="49" Margin="704,514,0,0" VerticalAlignment="Top" Width="350" Source="/Resources/gradient.png"/>
+        <Image x:Name="powerArrow" HorizontalAlignment="Left" Height="49" Margin="704,514,0,0" VerticalAlignment="Top" Width="14" Source="/Resources/strelka.png"/>
+
+        <Image x:Name="cornerGradient" HorizontalAlignment="Left" Height="49" Margin="704,582,0,0" VerticalAlignment="Top" Width="350" Source="/Resources/gradient.png"/>
+        <Image x:Name="cornerArrow" HorizontalAlignment="Left" Height="49" Margin="704,582,0,0" VerticalAlignment="Top" Width="14" Source="/Resources/strelka.png"/>
+
+        <Image x:Name="drotik1" HorizontalAlignment="Left" Margin="600,90,0,0" Height="20" Width="20" VerticalAlignment="Top" Source="/Resources/drotik_textura.png" Visibility="Hidden" />
+        <Image x:Name="drotik2" HorizontalAlignment="Left" Margin="600,100,0,0" Height="20" Width="20" VerticalAlignment="Top" Source="/Resources/drotik_textura.png" Visibility="Hidden"/>
+        <Image x:Name="drotik3" HorizontalAlignment="Left" Margin="600,110,0,0" Height="20" Width="20" VerticalAlignment="Top" Source="/Resources/drotik_textura.png" Visibility="Hidden"/>
+
+        <Label x:Name="currentPlayer" Content="" HorizontalAlignment="Left" Height="66" Margin="106,150,0,0" VerticalAlignment="Top" Width="247" Foreground="White" FontSize="35"/>
+        <Label x:Name="lastThrow" Content="Результат броска:" HorizontalAlignment="Left" Height="49" Margin="106,221,0,0" VerticalAlignment="Top" Width="205" Foreground="White" FontSize="22"/>
+        <Label x:Name="ansLabel" Content="" HorizontalAlignment="Left" Height="85" Margin="116,270,0,0" VerticalAlignment="Top" Width="195" Foreground="White" FontSize="40"/>
+
+        <Label x:Name="cornerInfo" Content="угол:" HorizontalAlignment="Left" Height="49" Margin="563,582,0,0" VerticalAlignment="Top" Width="136" Foreground="White" FontSize="30"/>
+        <Label x:Name="powerInfo" Content="сила:" HorizontalAlignment="Left" Height="49" Margin="563,514,0,0" VerticalAlignment="Top" Width="136" Foreground="White" FontSize="30"/>
+        <Label x:Name="aimInfo" Content="прицел:" HorizontalAlignment="Left" Height="49" Margin="563,446,0,0" VerticalAlignment="Top" Width="136" Foreground="White" FontSize="30"/>
+
+        <Image x:Name="aimScale" HorizontalAlignment="Left" Height="49" Margin="704,446,0,0" VerticalAlignment="Top" Width="350" Source="/Pages/Game/aim.png"/>
+        <Image x:Name ="aim" HorizontalAlignment="Left" Height="49" Margin="704,446,0,0" VerticalAlignment="Top" Width="14" Source="/Resources/strelka.png"/>
+        <Button x:Name ="StopButton" Content="Стоп" HorizontalAlignment="Left" Height="138" Margin="1127,470,0,0" VerticalAlignment="Top" Width="138" FontSize="28" PreviewMouseLeftButtonDown="stopClick" Background="#FFFF0B0B" Foreground="White">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius="100" Background="#FF727272" BorderBrush="Black" BorderThickness="2">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
+        <ListView Name="playersScores" ItemsSource="{Binding}" Margin="20,440,795,64" d:ItemsSource="{d:SampleData ItemCount=5}" FontSize="16">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding NickName}" Width="150">Ник</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Total}" Width="70">Цель</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Level}" Width="100">Уровень</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Scores}" Width="70">Остаток</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding NumberThrow}" Width="110">Номер броска</GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Label Content="Бросает:" HorizontalAlignment="Left" Height="49" Margin="106,110,0,0" VerticalAlignment="Top" Width="205" Foreground="White" FontSize="22"/>
+        <Image x:Name="remainingDrotiks" HorizontalAlignment="Left" Height="222" Margin="419,90,0,0" VerticalAlignment="Top" Width="220" Source="/Resources/3drotiks.png"/>
+        <Image x:Name="fallDrotik" HorizontalAlignment="Left" Height="114" Margin="1127,1159,0,0" VerticalAlignment="Top" Width="25" Source="/Resources/drotik_textura_padaet.png"/>
+    </Grid>
+</Page>

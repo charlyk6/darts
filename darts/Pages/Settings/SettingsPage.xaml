@@ -1,0 +1,53 @@
+﻿<Page x:Class="darts.Pages.Settings.SettingsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:darts.Pages.Settings"
+      mc:Ignorable="d" 
+      d:DesignHeight="500" d:DesignWidth="800"
+      Title="Дартс">
+
+    <Page.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Margin" Value="8" />
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="MinWidth" Value="60"/>
+            <Setter Property="Margin" Value="8" />
+        </Style>
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+        <ListView Name="usersList" ItemsSource="{Binding}" FontSize="20">
+            <ListView.Resources>
+                <DataTemplate x:Key="FirstCell">
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox IsChecked="{Binding IsPlaying}" Checked="checkBox_Checked" Unchecked="checkBox_UnChecked" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.Resources>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="100" Header="Играет" CellTemplate="{StaticResource FirstCell}"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding NickName}" Width="150">Ник</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding FirstName}" Width="100">Имя</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding LastName}" Width="150">Фамилия</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding UserLevel}" Width="100">Уровень</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Total}" Width="150">Кол-во очков</GridViewColumn>
+                </GridView>
+            </ListView.View>
+            
+        </ListView>
+        
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Content="Добавить" Margin="10" Click="Add_Click" Width="103" FontSize="17"/>
+            <Button Content="Изменить" Margin="10" Click="Edit_Click" Width="103" FontSize="17"  />
+            <Button Content="Удалить" Margin="10" Click="Delete_Click" FontSize="15" Visibility="Hidden"/>
+        </StackPanel>
+
+    </Grid>
+</Page>

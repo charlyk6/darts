@@ -1,0 +1,71 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Pages\Game\aim.png" />
+    <None Remove="Pages\Game\aim2.png" />
+    <None Remove="Pages\Game\red-button.png" />
+    <None Remove="Resources\1drotik.png" />
+    <None Remove="Resources\2drotiks.png" />
+    <None Remove="Resources\3drotiks.png" />
+    <None Remove="Resources\aim.png" />
+    <None Remove="Resources\cup.png" />
+    <None Remove="Resources\drotik_textura.png" />
+    <None Remove="Resources\drotik_textura_padaet.png" />
+    <None Remove="Resources\fon.jpg" />
+    <None Remove="Resources\fon2.png" />
+    <None Remove="Resources\gradient.png" />
+    <None Remove="Resources\knopka2.png" />
+    <None Remove="Resources\mishen.png" />
+    <None Remove="Resources\mishenIco.ico" />
+    <None Remove="Resources\red-button.png" />
+    <None Remove="Resources\strelka.png" />
+    <None Remove="Resources\target2.png" />
+    <None Remove="Resources\userImage.png" />
+    <None Remove="Resources\userImage2.png" />
+    <None Remove="Resources\znakIco.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\darts.db\darts.db.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Pages\Game\aim.png" />
+    <Resource Include="Pages\Game\red-button.png" />
+    <Resource Include="Resources\1drotik.png" />
+    <Resource Include="Resources\2drotiks.png" />
+    <Resource Include="Resources\3drotiks.png" />
+    <Resource Include="Resources\aim.png" />
+    <Resource Include="Resources\cup.png" />
+    <Resource Include="Resources\drotik_textura.png" />
+    <Resource Include="Resources\drotik_textura_padaet.png" />
+    <Resource Include="Resources\fon.jpg" />
+    <Resource Include="Resources\fon2.png" />
+    <Resource Include="Resources\gradient.png" />
+    <Resource Include="Resources\knopka2.png" />
+    <Resource Include="Resources\mishen.png" />
+    <Resource Include="Resources\mishenIco.ico">
+      <CopyToOutputDirectory></CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\red-button.png" />
+    <Resource Include="Resources\strelka.png" />
+    <Resource Include="Resources\target2.png" />
+    <Resource Include="Resources\userImage.png" />
+    <Resource Include="Resources\userImage2.png" />
+    <Resource Include="Resources\znakIco.png" />     
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Pages\Game\GameWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
+</Project>
