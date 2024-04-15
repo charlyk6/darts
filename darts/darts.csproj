@@ -2,29 +2,47 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net7.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="drotik_textura.png" />
-    <None Remove="fon.jpg" />
-    <None Remove="gradient.png" />
-    <None Remove="knopka2.png" />
-    <None Remove="mishen.png" />
-    <None Remove="strelka.png" />
-    <None Remove="target2.png" />
+    <None Remove="Resources\1drotik.png" />
+    <None Remove="Resources\2drotiks.png" />
+    <None Remove="Resources\3drotiks.png" />
+    <None Remove="Resources\drotik_textura.png" />
+    <None Remove="Resources\drotik_textura_padaet.png" />
+    <None Remove="Resources\fon.jpg" />
+    <None Remove="Resources\gradient.png" />
+    <None Remove="Resources\knopka2.png" />
+    <None Remove="Resources\mishen.png" />
+    <None Remove="Resources\strelka.png" />
+    <None Remove="Resources\target2.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="drotik_textura.png" />
-    <Resource Include="fon.jpg" />
-    <Resource Include="gradient.png" />
-    <Resource Include="knopka2.png" />
-    <Resource Include="mishen.png" />
-    <Resource Include="strelka.png" />
-    <Resource Include="target2.png" />
+    <ProjectReference Include="..\darts.db\darts.db.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\1drotik.png" />
+    <Resource Include="Resources\2drotiks.png" />
+    <Resource Include="Resources\3drotiks.png" />
+    <Resource Include="Resources\drotik_textura.png" />
+    <Resource Include="Resources\drotik_textura_padaet.png" />
+    <Resource Include="Resources\fon.jpg" />
+    <Resource Include="Resources\gradient.png" />
+    <Resource Include="Resources\knopka2.png" />
+    <Resource Include="Resources\mishen.png" />
+    <Resource Include="Resources\strelka.png" />
+    <Resource Include="Resources\target2.png" />     
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Pages\Game\GameWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 
 </Project>
