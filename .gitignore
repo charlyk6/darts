@@ -405,3 +405,8 @@ FodyWeavers.xsd
 *.Local.json
 
 LOG*.txt
+darts/obj/darts.csproj.nuget.dgspec.json
+darts/obj/darts.csproj.nuget.g.props
+.vs
+darts/obj/project.assets.json
+darts/obj/project.nuget.cache
