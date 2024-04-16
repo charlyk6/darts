@@ -1,4 +1,5 @@
 ﻿using darts.Pages.Games;
+using darts.Pages.Settings;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -10,20 +11,24 @@ namespace darts.Pages
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {       
+    {
+        private GamePage game { get; set; }
+        private SettingsPage settings { get; set; }
         public MainWindow()
         {
-            InitializeComponent();       
+            InitializeComponent();    
+            game = new GamePage();
+            settings = new SettingsPage();
         }
 
         private void SettingsButton_OnClick(object sender, RoutedEventArgs e)
         {
-            
+            MainFrame.NavigationService.Navigate(settings);
         }
 
         private void GameButton_OnClick(object sender, RoutedEventArgs e)
         {
-            MainFrame.NavigationService.Navigate(new GamePage());
+            MainFrame.NavigationService.Navigate(game);
         }
     }
 
