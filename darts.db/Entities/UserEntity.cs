@@ -14,5 +14,10 @@
         /// ник
         /// </summary>
         public string? NickName { get; set;}
+        public List<UsersGameEntity> UsersGames { get; set; }
+        public UserEntity()
+        {
+            UsersGames = new List<UsersGameEntity>();
+        }
     }
 }
