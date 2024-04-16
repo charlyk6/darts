@@ -23,28 +23,35 @@ namespace darts
 
         public ThicknessAnimation flyAnimationDelta = new ThicknessAnimation();
         double rsize = 3;
+        double drotikX;
+        double drotikY;
 
         public Drotik(Image dr)
         {
             drotik = dr;
+            drotikX = dr.Margin.Left;
+            drotikY = dr.Margin.Top;
         }
         public void do_throw(int x, int y0)
         {
             Throw.init();
             drotik.Margin = new Thickness(x + drotik.Width / 2 - drotik.Width * rsize / 2, Throw.normalizeY(Throw.f(0), y0), 0, 0);
             initFlyAnimation(y0);
-            //beginFlyAnimation();
+            beginFlyAnimation();
             stayVisible();
-            drotik.Margin = new Thickness(x, Throw.normalizeY(Throw.f(Throw.time), y0), 0, 0);
+            var dop = new Thickness(x, Throw.normalizeY(Throw.f(Throw.time), y0), 0, 0);
+            drotikX = dop.Left;
+            drotikY = dop.Top;
+            drotik.Margin = dop;
 
         }
         public int getX()
         {
-            return (int)drotik.Margin.Left;
+            return (int)drotikX;
         }
         public int getY()
         {
-            return (int)drotik.Margin.Top;
+            return (int)drotikY;
         }
         public void stayInvisibe()
         {
@@ -59,6 +66,14 @@ namespace darts
         {
             int timeAnimation = 700;
             int frames = 100;
+            
+            flyAnimation = new ThicknessAnimationUsingKeyFrames();
+            flyAnimationWidth = new DoubleAnimation();
+            flyAnimationHeight = new DoubleAnimation();
+            flyAnimationDelta = new ThicknessAnimation();
+            
+            
+            
             flyAnimation.Duration = TimeSpan.FromMilliseconds(timeAnimation);
             flyAnimation.KeyFrames.Clear();
 
@@ -72,7 +87,7 @@ namespace darts
 
             Storyboard.SetTargetName(flyAnimation, drotik.Name);
             Storyboard.SetTargetProperty(flyAnimation, new PropertyPath(Image.MarginProperty));
-            
+            flyStoryBoard.Children.Clear();
             flyStoryBoard.Children.Add(flyAnimation);
 
             flyAnimationWidth.Duration = TimeSpan.FromMilliseconds(timeAnimation);
@@ -100,7 +115,6 @@ namespace darts
         public void beginFlyAnimation()
         {
             flyStoryBoard.Begin(drotik, true);
-            // кто прочитал тот сдохнет
         }
     }
 }
