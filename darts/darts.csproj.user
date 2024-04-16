@@ -21,9 +21,6 @@
     <Page Update="Pages\Game\GamePage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Pages\Game\GameWindow.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Pages\MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
