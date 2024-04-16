@@ -1,6 +1,7 @@
 ﻿using darts.db;
 using darts.db.Entities;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -23,7 +24,7 @@ namespace darts.Pages.Settings
             // гарантируем, что база данных создана
             db.Database.EnsureCreated();
             // загружаем данные из БД
-            db.Users.Load();
+            db.Users.Load();            
             // и устанавливаем данные в качестве контекста
             DataContext = db.Users.Local.ToObservableCollection();
         }
@@ -36,6 +37,12 @@ namespace darts.Pages.Settings
             {
                 var User = UserWindow.User;
                 db.Users.Add(User);
+        //Пример добавления других данных
+                //db.Games.Add(new GameEntity
+                //{
+                //    Date = DateTime.Now,
+                //    Title = "Первая игра"                    
+                //});
                 db.SaveChanges();
             }
         }

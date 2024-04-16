@@ -410,3 +410,5 @@ darts/obj/darts.csproj.nuget.g.props
 .vs
 darts/obj/project.assets.json
 darts/obj/project.nuget.cache
+DataBase/Darts.db-shm
+DataBase/Darts.db-wal
