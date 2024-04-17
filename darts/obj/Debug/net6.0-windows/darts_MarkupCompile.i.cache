@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Projects\darts\darts\obj\Debug\net6.0-windows\
+D:\Projects\darts\darts\obj\Debug\net6.0-windows\
 darts
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-C:\Projects\darts\darts\App.xaml
-11407045341
+D:\Projects\darts\darts\App.xaml
+4879562087
 
-11-183346267
-194726069201
-MainWindow.xaml;
+14-2085398115
+194-2067936865
+Pages\Game\GamePage.xaml;Pages\MainWindow.xaml;Pages\Settings\SettingsPage.xaml;Pages\UserWindow.xaml;
 
-False
+True
 

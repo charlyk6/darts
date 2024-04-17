@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
@@ -45,30 +46,6 @@ namespace darts.Pages.Games
             Storyboard.SetTargetProperty(cornerAnimation, new PropertyPath(Image.MarginProperty));
             cornerStoryboard.Children.Add(cornerAnimation);
         }
-        void initAimAnimation()
-        {
-            aim.HorizontalAlignment = HorizontalAlignment.Left;
-
-            aimLeftAnimation.From = aim.Margin;
-            aimLeftAnimation.To = new Thickness(target.Margin.Left, aim.Margin.Top, 0, 0);
-            if (aim.Margin.Left - target.Margin.Left != 0)
-            {
-                aimLeftAnimation.SpeedRatio = 2 * (target.Width / 2) / (aim.Margin.Left - target.Margin.Left);
-            }
-            aimRightAnimation.From = aim.Margin;
-            aimRightAnimation.To = new Thickness(target.Margin.Left + target.Width - aim.Width, aim.Margin.Top, 0, 0);
-            if (target.Margin.Left + target.Width - aim.Width - aim.Margin.Left != 0)
-            {
-                aimRightAnimation.SpeedRatio = 2 * (target.Width / 2) / (target.Margin.Left + target.Width - aim.Width - aim.Margin.Left);
-            }
-
-            Storyboard.SetTargetName(aimLeftAnimation, aim.Name);
-            Storyboard.SetTargetProperty(aimLeftAnimation, new PropertyPath(Image.MarginProperty));
-            aimLeftStoryboard.Children.Add(aimLeftAnimation);
-            Storyboard.SetTargetName(aimRightAnimation, aim.Name);
-            Storyboard.SetTargetProperty(aimRightAnimation, new PropertyPath(Image.MarginProperty));
-            aimRightStoryboard.Children.Add(aimRightAnimation);
-        }
         void beginAnimation()
         {
             powerStoryboard.Begin(powerArrow, true);
@@ -81,7 +58,6 @@ namespace darts.Pages.Games
             initCornerAnimation();
 
             beginAnimation();
-            initAimAnimation();
             curTry.initDrotiks(drotik1, drotik2, drotik3);
             curTry.target.target = target;
         }
@@ -104,32 +80,15 @@ namespace darts.Pages.Games
             beginAnimation();
             ansLabel.Content = curTry.points;
         }
-        public void keyPress(object sender, KeyEventArgs e)
+        public void aimChange(object sender, RoutedEventArgs e)
         {
-            switch (e.Key)
+            var curPos = Mouse.GetPosition(this);
+            var leftX = target.Margin.Left;
+            var rightX = target.Margin.Left + target.Width;
+            if(curPos.X <= rightX && curPos.X >= leftX)
             {
-                case Key.Left:
-                    aimLeft(sender, e); break;
-                case Key.Right:
-                    aimRight(sender, e); break;
+                aim.Margin = new Thickness(curPos.X - aim.Width / 2, aim.Margin.Top, 0, 0);
             }
-        }
-        public void aimLeft(object sender, RoutedEventArgs e)
-        {
-            aimStop(sender, e);
-            initAimAnimation();
-            aimLeftStoryboard.Begin(aim, true);
-        }
-        public void aimRight(object sender, RoutedEventArgs e)
-        {
-            aimStop(sender, e);
-            initAimAnimation();
-            aimRightStoryboard.Begin(aim, true);
-        }
-        public void aimStop(object sender, RoutedEventArgs e)
-        {
-            aimLeftStoryboard.Pause(aim);
-            aimRightStoryboard.Pause(aim);
         }
     }
 }

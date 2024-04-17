@@ -94,7 +94,6 @@ namespace darts
         public void beginFlyAnimation()
         {
             flyStoryBoard.Begin(drotik, true);
-            // кто прочитал тот сдохнет
         }
     }
 }

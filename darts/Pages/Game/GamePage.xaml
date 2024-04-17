@@ -5,8 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:darts.Pages.Games"
       mc:Ignorable="d" 
-      d:DesignHeight="700" d:DesignWidth="1300" KeyDown="keyPress" KeyUp="aimStop"
-      Title="darts">
+      d:DesignHeight="700" d:DesignWidth="1300"
+      Title="darts" MouseDown="aimChange">
     <Page.Background>
         <ImageBrush ImageSource="/Resources/fon.jpg" Stretch="Fill" />
     </Page.Background>

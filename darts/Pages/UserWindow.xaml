@@ -32,7 +32,7 @@
 
         <TextBox Text="{Binding FirstName}" Grid.Column="1" Grid.Row="0"/>
         <TextBox Text="{Binding LastName}" Grid.Column="1" Grid.Row="1" />
-        <TextBox Text="{Binding NickName}" Grid.Column="1" Grid.Row="2" />
+        <TextBox Text="{Binding NickName}" Grid.Column="1" Grid.Row="1" Margin="0,71,0,0" Grid.RowSpan="2" />
 
         <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="4" Grid.Column="1">
             <Button IsDefault="True" Click="Accept_Click" >OK</Button>

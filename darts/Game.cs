@@ -8,6 +8,6 @@ namespace darts
 {
     public class Game
     {
-        // кто прочитал тот сдохнет
+
     }
 }

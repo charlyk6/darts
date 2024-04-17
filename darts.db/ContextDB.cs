@@ -12,7 +12,7 @@ namespace darts.db
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data Source=c:\\Projects\\darts\\DataBase\\Darts.db");
+            optionsBuilder.UseSqlite("Data Source=d:\\Projects\\darts\\DataBase\\Darts.db");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
