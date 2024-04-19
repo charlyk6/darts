@@ -22,17 +22,25 @@
             <RowDefinition />
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
-        <ListBox x:Name="usersList" ItemsSource="{Binding}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Text="{Binding LastName}" FontSize="16" />
-                        <TextBlock Text="{Binding FirstName}" FontSize="16" />
-                        <TextBlock Text="{Binding NickName}" FontSize="16" />
+        <ListView Name="usersList" ItemsSource="{Binding}">
+            <ListView.Resources>
+                <DataTemplate x:Key="FirstCell">
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox IsChecked="{Binding IsPlaying}"/>
                     </StackPanel>
                 </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+            </ListView.Resources>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="50" Header="Играет" CellTemplate="{StaticResource FirstCell}"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding NickName}" Width="100">Ник</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding FirstName}" Width="100">Имя</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding LastName}" Width="100">Фамилия</GridViewColumn>
+                </GridView>
+            </ListView.View>
+            
+        </ListView>
+        
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button Content="Добавить" Margin="10" Click="Add_Click" />
             <Button Content="Изменить" Margin="10" Click="Edit_Click"  />

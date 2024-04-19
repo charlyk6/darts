@@ -2,8 +2,11 @@
 using darts.db.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
 
 namespace darts.Pages.Settings
 {
@@ -13,6 +16,8 @@ namespace darts.Pages.Settings
     public partial class SettingsPage : Page
     {
         private ContextDB db = new ContextDB();
+        public List<UserModel> usersModels = new List<UserModel>();
+
         public SettingsPage()
         {
             InitializeComponent();
@@ -24,9 +29,14 @@ namespace darts.Pages.Settings
             // гарантируем, что база данных создана
             db.Database.EnsureCreated();
             // загружаем данные из БД
-            db.Users.Load();            
+            db.Users.Load();
             // и устанавливаем данные в качестве контекста
-            DataContext = db.Users.Local.ToObservableCollection();
+            var usersEntities = db.Users.Local.ToList();
+            foreach (var user in usersEntities)
+            {
+                usersModels.Add(new UserModel(user));
+            }
+            DataContext = usersModels;
         }
 
         // добавление
@@ -37,6 +47,7 @@ namespace darts.Pages.Settings
             {
                 var User = UserWindow.User;
                 db.Users.Add(User);
+                usersModels.Add(new UserModel(User));
         //Пример добавления других данных
                 //db.Games.Add(new GameEntity
                 //{
@@ -44,6 +55,8 @@ namespace darts.Pages.Settings
                 //    Title = "Первая игра"                    
                 //});
                 db.SaveChanges();
+                usersList.Items.Refresh();
+
             }
         }
 
@@ -51,10 +64,12 @@ namespace darts.Pages.Settings
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
             // получаем выделенный объект
-            UserEntity? user = usersList.SelectedItem as UserEntity;
+            UserModel? userM = usersList.SelectedItem as UserModel;
             // если ни одного объекта не выделено, выходим
-            if (user is null) return;
+            if (userM is null) return;
 
+            UserEntity? user = userM.getEntity();
+            
             UserWindow UserWindow = new UserWindow(new UserEntity
             {
                 Id = user.Id,
@@ -72,6 +87,9 @@ namespace darts.Pages.Settings
                     user.FirstName = UserWindow.User.FirstName;
                     user.LastName = UserWindow.User.LastName;
                     user.NickName = UserWindow.User.NickName;
+                    userM.FirstName = user.FirstName;
+                    userM.LastName = user.LastName;
+                    userM.NickName = user.NickName;
                     db.SaveChanges();
                     usersList.Items.Refresh();
                 }
@@ -81,12 +99,17 @@ namespace darts.Pages.Settings
         // удаление
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
+
             // получаем выделенный объект
-            UserEntity? user = usersList.SelectedItem as UserEntity;
+            UserModel? userM = usersList.SelectedItem as UserModel;
             // если ни одного объекта не выделено, выходим
-            if (user is null) return;
+            if (userM is null) return;
+            
+            UserEntity user = userM.getEntity();
+            usersModels.Remove(userM);
             db.Users.Remove(user);
             db.SaveChanges();
+            usersList.Items.Refresh();
         }
     }
 }
