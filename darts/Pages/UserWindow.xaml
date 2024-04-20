@@ -35,8 +35,8 @@
         <TextBox Text="{Binding NickName}" Grid.Column="1" Grid.Row="1" Margin="0,71,0,0" Grid.RowSpan="2" />
 
         <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="4" Grid.Column="1">
-            <Button IsDefault="True" Click="Accept_Click" >OK</Button>
-            <Button IsCancel="True" >Отмена</Button>
+            <Button IsDefault="True" Click="Accept_Click" Height="30" >OK</Button>
+            <Button IsCancel="True" Height="30" >Отмена</Button>
         </StackPanel>
     </Grid>
 </Window>

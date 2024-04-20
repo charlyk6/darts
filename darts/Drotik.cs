@@ -27,7 +27,7 @@ namespace darts
             Throw.init();
             drotik.Margin = new Thickness(x + drotik.Width / 2 - drotik.Width * rsize / 2, Throw.normalizeY(Throw.f(0), y0), 0, 0);
             initFlyAnimation(y0);
-            //beginFlyAnimation();
+            beginFlyAnimation();
             stayVisible();
             drotik.Margin = new Thickness(x, Throw.normalizeY(Throw.f(Throw.time), y0), 0, 0);
 

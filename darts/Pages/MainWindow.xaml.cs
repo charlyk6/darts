@@ -1,5 +1,6 @@
 ﻿using darts.Pages.Games;
 using darts.Pages.Settings;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -19,6 +20,8 @@ namespace darts.Pages
             InitializeComponent();    
             game = new GamePage();
             settings = new SettingsPage();
+            MainFrame.NavigationService.Navigate(settings);
+
         }
 
         private void SettingsButton_OnClick(object sender, RoutedEventArgs e)
@@ -28,6 +31,8 @@ namespace darts.Pages
 
         private void GameButton_OnClick(object sender, RoutedEventArgs e)
         {
+            List<UserModel> users = settings.usersModels;
+            game.users = users;
             MainFrame.NavigationService.Navigate(game);
         }
     }
