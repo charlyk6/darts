@@ -19,14 +19,7 @@ namespace darts
         public Game(List<UserEntity> us) {
             users = us;
         }
-        public void AddUser(UserEntity user)
-        {
-            users.Add(user);
-        }
-        public void RemoveUser(UserEntity user)
-        {
-            users.Remove(user);
-        }
+       
         public void initDrotiks(Image d1, Image d2, Image d3)
         {
             drotik1 = d1;
