@@ -1,4 +1,5 @@
-﻿using darts.db.Entities;
+﻿using darts.db;
+using darts.db.Entities;
 using darts.Pages.Settings;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,7 @@ namespace darts.Pages.Games
 
         Constants constnats = new Constants();
         public List<UserEntity> users { get; set; }
+        private ContextDB db = new ContextDB();
 
         public GamePage()
         {

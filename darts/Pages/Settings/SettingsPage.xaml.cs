@@ -1,8 +1,6 @@
 ﻿using darts.db;
 using darts.db.Entities;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -14,7 +12,6 @@ namespace darts.Pages.Settings
     public partial class SettingsPage : Page
     {
         private ContextDB db = new ContextDB();
-        //public List<UserModel> usersModels = new List<UserModel>();
 
         public SettingsPage()
         {
@@ -30,13 +27,48 @@ namespace darts.Pages.Settings
             db.Users.Load();
             // и устанавливаем данные в качестве контекста
             DataContext = db.Users.Local.ToObservableCollection();
+        }
 
-            //var usersEntities = db.Users.Local.ToList();
-            //foreach (var user in usersEntities)
+        private void checkBox_UnChecked(object sender, RoutedEventArgs e)
+        {
+            //Закоментированный код был бы нужен, если бы мы не использовали ObservableCollection !!!!!
+
+            //var items = new List<UserEntity>();
+            //foreach (var item in usersList.Items.SourceCollection)
             //{
-            //    usersModels.Add(new UserModel(user));
+            //    var user = item as UserEntity;
+            //    if ((user != null) && (!user.IsPlaying))
+            //    {
+            //        items.Add((UserEntity)item);
+            //    }
             //}
-            //DataContext = usersModels;
+
+            //var users = db.Users.Where(u => u.IsPlaying).ToList();
+            //var changeUsers = users.Intersect(items);
+            //var changeUser = users.FirstOrDefault(u => u.Id == changeUsers.FirstOrDefault().Id);
+            //changeUser.IsPlaying = false;
+            db.SaveChanges();
+        }
+
+        private void checkBox_Checked(object sender, RoutedEventArgs e)
+        {
+            //Закоментированный код был бы нужен, если бы мы не использовали ObservableCollection !!!!!
+
+            //var items = new List<UserEntity>();
+            //foreach (var item in usersList.Items.SourceCollection)
+            //{
+            //    var user = item as UserEntity;
+            //    if ((user != null) && (user.IsPlaying))
+            //    {
+            //        items.Add((UserEntity)item);
+            //    }
+            //}
+
+            //var users = db.Users.Where(u => !u.IsPlaying).ToList();
+            //var changeUsers = users.Intersect(items);
+            //var changeUser = users.FirstOrDefault(u => u.Id == changeUsers.FirstOrDefault().Id);
+            //changeUser.IsPlaying = false;
+            db.SaveChanges();
         }
 
         // добавление
@@ -79,7 +111,8 @@ namespace darts.Pages.Settings
                 LastName = user.LastName,
                 NickName = user.NickName,
                 UserLevel = user.UserLevel,
-                Score = user.Score
+                Score = user.Score,
+                IsPlaying = user.IsPlaying
             });
 
             if (UserWindow.ShowDialog() == true)
@@ -93,6 +126,7 @@ namespace darts.Pages.Settings
                     user.NickName = UserWindow.User.NickName;
                     user.UserLevel = UserWindow.User.UserLevel;
                     user.Score = UserWindow.User.Score;
+                    user.IsPlaying = UserWindow.User.IsPlaying;
                     db.SaveChanges();
                     usersList.Items.Refresh();
                 }
