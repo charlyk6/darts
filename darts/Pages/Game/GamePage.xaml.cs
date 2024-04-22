@@ -62,6 +62,7 @@ namespace darts.Pages.Games
             game = new Game(users);
             game.initDrotiks(drotik1, drotik2, drotik3);
             game.setTarget(target);
+
         }
         public void powerClick(object sender, RoutedEventArgs e)
         {
