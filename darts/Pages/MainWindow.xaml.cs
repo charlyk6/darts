@@ -35,6 +35,13 @@ namespace darts.Pages
             game.users = users;
             MainFrame.NavigationService.Navigate(game);
         }
+        private void NewGameButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            game = new GamePage();
+            List<UserModel> users = settings.usersModels;
+            game.users = users;
+            MainFrame.NavigationService.Navigate(game);
+        }
     }
 
 }

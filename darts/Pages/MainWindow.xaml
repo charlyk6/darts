@@ -27,6 +27,12 @@
                         Игра
                     </Button>
                 </StackPanel>
+                <StackPanel Orientation="Horizontal" Width="140">
+
+                    <Button Name="NewGame" Width="130" Click="NewGameButton_OnClick" Margin="2">
+                        Новая игра
+                    </Button>
+                </StackPanel>
 
             </ListView>
         </Border>

@@ -15,7 +15,6 @@ namespace darts.Pages.Games
     {
 
         Game game;
-        //Try curTry = new Try();
         ThicknessAnimation powerAnimation = new ThicknessAnimation();
         ThicknessAnimation cornerAnimation = new ThicknessAnimation();
 

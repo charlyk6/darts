@@ -14,6 +14,8 @@
         /// ник
         /// </summary>
         public string? NickName { get; set;}
+
+        public bool IsPlaying { get; set; } = true;
         public List<UsersGameEntity> UsersGames { get; set; }
         public UserEntity()
         {

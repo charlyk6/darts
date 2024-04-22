@@ -15,7 +15,7 @@ namespace darts.Pages.Settings
         public string? NickName { get; set; }
         public List<UsersGameEntity> UsersGames { get; set; }
 
-        public bool IsPlaying { get; set; } = true;
+        public bool IsPlaying { get; set; }
         public int CountWins { get; set; }
         public UserEntity UserE { get; set; }
         public UserModel(UserEntity u) {
@@ -24,6 +24,7 @@ namespace darts.Pages.Settings
             FirstName = u.FirstName;
             NickName = u.NickName;
             UsersGames = u.UsersGames;
+            IsPlaying = u.IsPlaying;
             UserE = u;
         }
         public UserEntity getEntity()
