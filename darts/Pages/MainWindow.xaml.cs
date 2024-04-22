@@ -1,4 +1,5 @@
-﻿using darts.Pages.Games;
+﻿using darts.db.Entities;
+using darts.Pages.Games;
 using darts.Pages.Settings;
 using System.Collections.Generic;
 using System.Windows;
@@ -17,7 +18,7 @@ namespace darts.Pages
         private SettingsPage settings { get; set; }
         public MainWindow()
         {
-            InitializeComponent();    
+            InitializeComponent();
             game = new GamePage();
             settings = new SettingsPage();
             MainFrame.NavigationService.Navigate(settings);
@@ -30,16 +31,16 @@ namespace darts.Pages
         }
 
         private void GameButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            List<UserModel> users = settings.usersModels;
-            game.users = users;
+        {            
+            //List<UserModel> users = settings.usersModels;
+            //game.users = users;
             MainFrame.NavigationService.Navigate(game);
         }
         private void NewGameButton_OnClick(object sender, RoutedEventArgs e)
         {
             game = new GamePage();
-            List<UserModel> users = settings.usersModels;
-            game.users = users;
+            //    List<UserModel> users = settings.usersModels;
+            //    game.users = users;
             MainFrame.NavigationService.Navigate(game);
         }
     }

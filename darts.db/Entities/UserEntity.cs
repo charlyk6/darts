@@ -1,4 +1,6 @@
-﻿namespace darts.db.Entities
+﻿using darts.db.Enums;
+
+namespace darts.db.Entities
 {
     public class UserEntity : BaseEntity
     {
@@ -14,8 +16,18 @@
         /// ник
         /// </summary>
         public string? NickName { get; set;}
-
-        public bool IsPlaying { get; set; } = true;
+        /// <summary>
+        /// Кол-во очков, которые надо набрать игроку
+        /// </summary>
+        public int? Score { get; set; }
+        /// <summary>
+        /// Уровень сложности
+        /// </summary>
+        public Level UserLevel { get; set; }
+        /// <summary>
+        /// Играет ли пользователь
+        /// </summary>
+        public bool IsPlaying { get; set; } = false;
         public List<UsersGameEntity> UsersGames { get; set; }
         public UserEntity()
         {

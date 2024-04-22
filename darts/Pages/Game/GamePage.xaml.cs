@@ -1,4 +1,5 @@
-﻿using darts.Pages.Settings;
+﻿using darts.db.Entities;
+using darts.Pages.Settings;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -22,7 +23,7 @@ namespace darts.Pages.Games
         Storyboard cornerStoryboard = new Storyboard();
 
         Constants constnats = new Constants();
-        public List<UserModel> users { get; set; }
+        public List<UserEntity> users { get; set; }
 
         public GamePage()
         {
