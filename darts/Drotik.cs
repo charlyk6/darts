@@ -17,6 +17,8 @@ namespace darts
 
         public ThicknessAnimation flyAnimationDelta = new ThicknessAnimation();
         double rsize = 3;
+        double x;
+        double y;
 
         public Drotik(Image dr)
         {
@@ -30,15 +32,16 @@ namespace darts
             beginFlyAnimation();
             stayVisible();
             drotik.Margin = new Thickness(x, Throw.normalizeY(Throw.f(Throw.time), y0), 0, 0);
-
+            this.x = x;
+            this.y = Throw.normalizeY(Throw.f(Throw.time), y0);
         }
         public int getX()
         {
-            return (int)drotik.Margin.Left;
+            return (int)x;
         }
         public int getY()
         {
-            return (int)drotik.Margin.Top;
+            return (int)y;
         }
         public void stayInvisibe()
         {

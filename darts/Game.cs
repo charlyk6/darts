@@ -14,6 +14,8 @@ namespace darts
         public List<UserEntity> users { get; set; }
         public Try curTry = new Try();
         Image drotik1, drotik2, drotik3;
+        public int curUser = 0;
+        public int curThrow = 0;
         public Game(List<UserEntity> us) {
             users = us;
         }
@@ -46,7 +48,15 @@ namespace darts
         }
         public void doThrow(int x)
         {
+            curThrow++;
+            if(curThrow == 3)
+            {
+                curThrow = 0;
+                curUser++;
+                curUser %= users.Count;
+            }
             curTry.doThrow(x);
+
         }
     }
 }

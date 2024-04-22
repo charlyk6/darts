@@ -3,6 +3,7 @@ using darts.db.Entities;
 using darts.Pages.Settings;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -30,6 +31,10 @@ namespace darts.Pages.Games
         public GamePage()
         {
             InitializeComponent();
+            users = db.Users.Where(u => u.IsPlaying).ToList();
+            if (!users.Any()) {
+            //TODO : вывести предупреждение и сделать редирект на страницу настроек
+            }
         }
 
         void initArrowsAnimation()
@@ -65,6 +70,7 @@ namespace darts.Pages.Games
             game = new Game(users);
             game.initDrotiks(drotik1, drotik2, drotik3);
             game.setTarget(target);
+
         }
         public void powerClick(object sender, RoutedEventArgs e)
         {

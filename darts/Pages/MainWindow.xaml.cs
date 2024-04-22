@@ -19,7 +19,6 @@ namespace darts.Pages
         public MainWindow()
         {
             InitializeComponent();
-            game = new GamePage();
             settings = new SettingsPage();
             MainFrame.NavigationService.Navigate(settings);
 
@@ -31,16 +30,13 @@ namespace darts.Pages
         }
 
         private void GameButton_OnClick(object sender, RoutedEventArgs e)
-        {            
-            //List<UserModel> users = settings.usersModels;
-            //game.users = users;
+        {
+            game = new GamePage();
             MainFrame.NavigationService.Navigate(game);
         }
         private void NewGameButton_OnClick(object sender, RoutedEventArgs e)
         {
             game = new GamePage();
-            //    List<UserModel> users = settings.usersModels;
-            //    game.users = users;
             MainFrame.NavigationService.Navigate(game);
         }
     }
