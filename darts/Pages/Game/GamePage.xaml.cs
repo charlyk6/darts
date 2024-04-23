@@ -77,7 +77,7 @@ namespace darts.Pages.Games
         }
         public void throwClick(object sender, RoutedEventArgs e)
         {
-            game.doThrow((int)(aim.Margin.Left + aim.Height / 2 - drotik1.Height / 2));
+            game.doThrow((int)(aim.Margin.Left + aim.Width / 2 - drotik1.Width / 2));
             beginArrowsAnimation();
             ansLabel.Content = game.curTry.points;
         }

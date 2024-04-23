@@ -23,7 +23,6 @@ namespace darts.Pages.Settings
             InitializeComponent();
             Loaded += SettingsPage_Loaded;
         }
-
         private void SettingsPage_Loaded(object sender, RoutedEventArgs e)
         {
             // гарантируем, что база данных создана
