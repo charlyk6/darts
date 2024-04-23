@@ -26,7 +26,7 @@
             <ListView.Resources>
                 <DataTemplate x:Key="FirstCell">
                     <StackPanel Orientation="Horizontal">
-                        <CheckBox IsChecked="{Binding IsPlaying}"/>
+                        <CheckBox IsChecked="{Binding IsPlaying}" Checked="checkBox_Checked" Unchecked="checkBox_UnChecked" />
                     </StackPanel>
                 </DataTemplate>
             </ListView.Resources>
@@ -36,6 +36,8 @@
                     <GridViewColumn DisplayMemberBinding="{Binding NickName}" Width="100">Ник</GridViewColumn>
                     <GridViewColumn DisplayMemberBinding="{Binding FirstName}" Width="100">Имя</GridViewColumn>
                     <GridViewColumn DisplayMemberBinding="{Binding LastName}" Width="100">Фамилия</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding UserLevel}" Width="100">Уровень</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Score}" Width="100">Кол-во очков</GridViewColumn>
                 </GridView>
             </ListView.View>
             

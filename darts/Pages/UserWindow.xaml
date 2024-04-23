@@ -21,6 +21,8 @@
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100" />
@@ -29,12 +31,16 @@
         <TextBlock Text="Имя" Grid.Row="0" />
         <TextBlock Text="Фамилия" Grid.Row="1" />
         <TextBlock Text="Ник" Grid.Row="2" />
+        <TextBlock Text="Уровень" Grid.Row="3" />
+        <TextBlock Text="Кол-во очков" Grid.Row="4" />
 
         <TextBox Text="{Binding FirstName}" Grid.Column="1" Grid.Row="0"/>
         <TextBox Text="{Binding LastName}" Grid.Column="1" Grid.Row="1" />
-        <TextBox Text="{Binding NickName}" Grid.Column="1" Grid.Row="1" Margin="0,71,0,0" Grid.RowSpan="2" />
+        <TextBox Text="{Binding NickName}" Grid.Column="1" Grid.Row="2"  />
+        <TextBox Text="{Binding UserLevel}" Grid.Column="1" Grid.Row="3"  />
+        <TextBox Text="{Binding Score}" Grid.Column="1" Grid.Row="4"  />
 
-        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="4" Grid.Column="1">
+        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="5" Grid.Column="1">
             <Button IsDefault="True" Click="Accept_Click" Height="30" >OK</Button>
             <Button IsCancel="True" Height="30" >Отмена</Button>
         </StackPanel>

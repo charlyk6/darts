@@ -1,4 +1,5 @@
-﻿using darts.Pages.Settings;
+﻿using darts.db.Entities;
+using darts.Pages.Settings;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -10,22 +11,15 @@ namespace darts
 {
     public class Game
     {
-        public List<UserModel> users { get; set; }
+        public List<UserEntity> users { get; set; }
         public Try curTry = new Try();
         Image drotik1, drotik2, drotik3;
         public int curUser = 0;
         public int curThrow = 0;
-        public Game(List<UserModel> us) {
+        public Game(List<UserEntity> us) {
             users = us;
         }
-        public void AddUser(UserModel user)
-        {
-            users.Add(user);
-        }
-        public void RemoveUser(UserModel user)
-        {
-            users.Remove(user);
-        }
+       
         public void initDrotiks(Image d1, Image d2, Image d3)
         {
             drotik1 = d1;

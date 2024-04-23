@@ -1,12 +1,8 @@
 ﻿using darts.db;
 using darts.db.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
 
 namespace darts.Pages.Settings
 {
@@ -16,7 +12,6 @@ namespace darts.Pages.Settings
     public partial class SettingsPage : Page
     {
         private ContextDB db = new ContextDB();
-        public List<UserModel> usersModels = new List<UserModel>();
 
         public SettingsPage()
         {
@@ -30,12 +25,49 @@ namespace darts.Pages.Settings
             // загружаем данные из БД
             db.Users.Load();
             // и устанавливаем данные в качестве контекста
-            var usersEntities = db.Users.Local.ToList();
-            foreach (var user in usersEntities)
-            {
-                usersModels.Add(new UserModel(user));
-            }
-            DataContext = usersModels;
+            DataContext = db.Users.Local.ToObservableCollection();
+        }
+
+        private void checkBox_UnChecked(object sender, RoutedEventArgs e)
+        {
+            //Закоментированный код был бы нужен, если бы мы не использовали ObservableCollection !!!!!
+
+            //var items = new List<UserEntity>();
+            //foreach (var item in usersList.Items.SourceCollection)
+            //{
+            //    var user = item as UserEntity;
+            //    if ((user != null) && (!user.IsPlaying))
+            //    {
+            //        items.Add((UserEntity)item);
+            //    }
+            //}
+
+            //var users = db.Users.Where(u => u.IsPlaying).ToList();
+            //var changeUsers = users.Intersect(items);
+            //var changeUser = users.FirstOrDefault(u => u.Id == changeUsers.FirstOrDefault().Id);
+            //changeUser.IsPlaying = false;
+            db.SaveChanges();
+        }
+
+        private void checkBox_Checked(object sender, RoutedEventArgs e)
+        {
+            //Закоментированный код был бы нужен, если бы мы не использовали ObservableCollection !!!!!
+
+            //var items = new List<UserEntity>();
+            //foreach (var item in usersList.Items.SourceCollection)
+            //{
+            //    var user = item as UserEntity;
+            //    if ((user != null) && (user.IsPlaying))
+            //    {
+            //        items.Add((UserEntity)item);
+            //    }
+            //}
+
+            //var users = db.Users.Where(u => !u.IsPlaying).ToList();
+            //var changeUsers = users.Intersect(items);
+            //var changeUser = users.FirstOrDefault(u => u.Id == changeUsers.FirstOrDefault().Id);
+            //changeUser.IsPlaying = false;
+            db.SaveChanges();
         }
 
         // добавление
@@ -44,9 +76,11 @@ namespace darts.Pages.Settings
             UserWindow UserWindow = new UserWindow(new UserEntity());
             if (UserWindow.ShowDialog() == true)
             {
-                var User = UserWindow.User;
+                UserEntity User = UserWindow.User;
                 db.Users.Add(User);
-                usersModels.Add(new UserModel(User));
+                db.SaveChanges();
+
+                //usersModels.Add(new UserModel(User));
         //Пример добавления других данных
                 //db.Games.Add(new GameEntity
                 //{
@@ -54,7 +88,7 @@ namespace darts.Pages.Settings
                 //    Title = "Первая игра"                    
                 //});
                 db.SaveChanges();
-                usersList.Items.Refresh();
+                //usersList.Items.Refresh();
 
             }
         }
@@ -63,18 +97,21 @@ namespace darts.Pages.Settings
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
             // получаем выделенный объект
-            UserModel? userM = usersList.SelectedItem as UserModel;
+            UserEntity? user = usersList.SelectedItem as UserEntity;
             // если ни одного объекта не выделено, выходим
-            if (userM is null) return;
+            if (user is null) return;
 
-            UserEntity? user = userM.getEntity();
+            //UserEntity? user = userM.getEntity();
             
             UserWindow UserWindow = new UserWindow(new UserEntity
             {
                 Id = user.Id,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
-                NickName = user.NickName
+                NickName = user.NickName,
+                UserLevel = user.UserLevel,
+                Score = user.Score,
+                IsPlaying = user.IsPlaying
             });
 
             if (UserWindow.ShowDialog() == true)
@@ -86,9 +123,9 @@ namespace darts.Pages.Settings
                     user.FirstName = UserWindow.User.FirstName;
                     user.LastName = UserWindow.User.LastName;
                     user.NickName = UserWindow.User.NickName;
-                    userM.FirstName = user.FirstName;
-                    userM.LastName = user.LastName;
-                    userM.NickName = user.NickName;
+                    user.UserLevel = UserWindow.User.UserLevel;
+                    user.Score = UserWindow.User.Score;
+                    user.IsPlaying = UserWindow.User.IsPlaying;
                     db.SaveChanges();
                     usersList.Items.Refresh();
                 }
@@ -98,17 +135,16 @@ namespace darts.Pages.Settings
         // удаление
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-
             // получаем выделенный объект
-            UserModel? userM = usersList.SelectedItem as UserModel;
+            UserEntity? user = usersList.SelectedItem as UserEntity;
             // если ни одного объекта не выделено, выходим
-            if (userM is null) return;
+            if (user is null) return;
             
-            UserEntity user = userM.getEntity();
-            usersModels.Remove(userM);
+            //UserEntity user = userM.getEntity();
+            //usersModels.Remove(userM);
             db.Users.Remove(user);
             db.SaveChanges();
-            usersList.Items.Refresh();
+            //usersList.Items.Refresh();
         }
     }
 }

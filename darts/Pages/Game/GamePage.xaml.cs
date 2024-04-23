@@ -1,6 +1,9 @@
-﻿using darts.Pages.Settings;
+﻿using darts.db;
+using darts.db.Entities;
+using darts.Pages.Settings;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -22,11 +25,16 @@ namespace darts.Pages.Games
         Storyboard cornerStoryboard = new Storyboard();
 
         Constants constnats = new Constants();
-        public List<UserModel> users { get; set; }
+        public List<UserEntity> users { get; set; }
+        private ContextDB db = new ContextDB();
 
         public GamePage()
         {
             InitializeComponent();
+            users = db.Users.Where(u => u.IsPlaying).ToList();
+            if (!users.Any()) {
+            //TODO : вывести предупреждение и сделать редирект на страницу настроек
+            }
         }
 
         void initArrowsAnimation()
