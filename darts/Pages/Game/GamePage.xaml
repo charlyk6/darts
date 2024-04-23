@@ -10,23 +10,41 @@
         <ImageBrush ImageSource="/Resources/fon.jpg" Stretch="Fill" />
     </Page.Background>
     <Grid>
-        <Image x:Name="target" HorizontalAlignment="left" Height="350" Margin="600,30,0,0" VerticalAlignment="Top" Width="350" Source="/Resources/target2.png" Loaded="start"/>
+        <Image x:Name="target" HorizontalAlignment="Left" Height="350" Margin="704,30,0,0" VerticalAlignment="Top" Width="350" Source="/Resources/target2.png" Loaded="start"/>
 
-        <Image x:Name="powerGradient" HorizontalAlignment="Left" Height="49" Margin="942, 550, 0, 0" VerticalAlignment="Top" Width="350" Source="/Resources/gradient.png" MouseDown="powerClick"/>
-        <Image x:Name="powerArrow" HorizontalAlignment="Left" Height="49" Margin="942, 550, 0, 0" VerticalAlignment="Top" Width="14" Source="/Resources/strelka.png" MouseDown="powerClick"/>
+        <Image x:Name="powerGradient" HorizontalAlignment="Left" Height="49" Margin="704,514,0,0" VerticalAlignment="Top" Width="350" Source="/Resources/gradient.png"/>
+        <Image x:Name="powerArrow" HorizontalAlignment="Left" Height="49" Margin="704,514,0,0" VerticalAlignment="Top" Width="14" Source="/Resources/strelka.png"/>
 
-        <Image x:Name="cornerGradient" HorizontalAlignment="Left" Height="49" Margin="942, 618, 0, 0" VerticalAlignment="Top" Width="350" Source="/Resources/gradient.png" MouseDown="cornerClick"/>
-        <Image x:Name="cornerArrow" HorizontalAlignment="Left" Height="49" Margin="942, 618, 0, 0" VerticalAlignment="Top" Width="14" Source="/Resources/strelka.png" MouseDown="cornerClick"/>
+        <Image x:Name="cornerGradient" HorizontalAlignment="Left" Height="49" Margin="704,582,0,0" VerticalAlignment="Top" Width="350" Source="/Resources/gradient.png"/>
+        <Image x:Name="cornerArrow" HorizontalAlignment="Left" Height="49" Margin="704,582,0,0" VerticalAlignment="Top" Width="14" Source="/Resources/strelka.png"/>
 
         <Image x:Name="drotik1" HorizontalAlignment="Left" Margin="600,90,0,0" Height="20" Width="20" VerticalAlignment="Top" Source="/Resources/drotik_textura.png" Visibility="Hidden" />
         <Image x:Name="drotik2" HorizontalAlignment="Left" Margin="600,100,0,0" Height="20" Width="20" VerticalAlignment="Top" Source="/Resources/drotik_textura.png" Visibility="Hidden"/>
         <Image x:Name="drotik3" HorizontalAlignment="Left" Margin="600,110,0,0" Height="20" Width="20" VerticalAlignment="Top" Source="/Resources/drotik_textura.png" Visibility="Hidden"/>
 
-        <Button x:Name="throwButton" Content="Бросить" HorizontalAlignment="Left" Margin="942,686,0,0" VerticalAlignment="Top" Height="49" Width="350" Background="#FF87FF77" FontSize="16" Click="throwClick"/>
-        <Label x:Name="ansLabel" Content="ansLabel" HorizontalAlignment="Left" Height="49" Margin="1080,110,0,0" VerticalAlignment="Top" Width="136" Foreground="White" FontSize="22"/>
-        <Label x:Name="cornerInfo" Content="угол:" HorizontalAlignment="Left" Height="49" Margin="801,618,0,0" VerticalAlignment="Top" Width="136" Foreground="White" FontSize="30"/>
-        <Label x:Name="powerInfo" Content="сила:" HorizontalAlignment="Left" Height="49" Margin="801,550,0,0" VerticalAlignment="Top" Width="136" Foreground="White" FontSize="30"/>
-        <Image x:Name="aimScale" HorizontalAlignment="Left" Height="49" Margin="600,400,0,0" VerticalAlignment="Top" Width="350" Source="/Pages/Game/aim.png" MouseDown="aimStop"/>
-        <Image x:Name ="aim" HorizontalAlignment="Left" Height="49" Margin="600,400,0,0" VerticalAlignment="Top" Width="14" Source="/Pages/Game/strelka.png" MouseDown="aimStop"/>
+        <Button x:Name="throwButton" Content="Бросить" HorizontalAlignment="Left" Margin="704,650,0,0" VerticalAlignment="Top" Height="49" Width="350" Background="#FF87FF77" FontSize="20" Click="throwClick" IsEnabled="False" Visibility="Hidden"/>
+        <Label x:Name="ansLabel" Content="ansLabel" HorizontalAlignment="Left" Height="49" Margin="1154,110,0,0" VerticalAlignment="Top" Width="136" Foreground="White" FontSize="22"/>
+        
+        <Label x:Name="cornerInfo" Content="угол:" HorizontalAlignment="Left" Height="49" Margin="563,582,0,0" VerticalAlignment="Top" Width="136" Foreground="White" FontSize="30"/>
+        <Label x:Name="powerInfo" Content="сила:" HorizontalAlignment="Left" Height="49" Margin="563,514,0,0" VerticalAlignment="Top" Width="136" Foreground="White" FontSize="30"/>
+        <Label x:Name="aimInfo" Content="прицел:" HorizontalAlignment="Left" Height="49" Margin="563,446,0,0" VerticalAlignment="Top" Width="136" Foreground="White" FontSize="30"/>
+
+        <Image x:Name="aimScale" HorizontalAlignment="Left" Height="49" Margin="704,446,0,0" VerticalAlignment="Top" Width="350" Source="/Pages/Game/aim.png"/>
+        <Image x:Name ="aim" HorizontalAlignment="Left" Height="49" Margin="704,446,0,0" VerticalAlignment="Top" Width="14" Source="/Pages/Game/strelka.png"/>
+        <Button Content="Стоп" HorizontalAlignment="Left" Height="138" Margin="1127,470,0,0" VerticalAlignment="Top" Width="138" FontSize="20" PreviewMouseLeftButtonDown="stopClick" Background="#FFFF0B0B" Foreground="White">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius="50" Background="#FF727272" BorderBrush="Black" BorderThickness="2">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
     </Grid>
 </Page>

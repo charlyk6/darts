@@ -31,7 +31,7 @@ namespace darts.Pages.Games
         Constants constnats = new Constants();
         public List<UserEntity> users { get; set; }
         private ContextDB db = new ContextDB();
-
+        private int curScale = 0;
         public GamePage()
         {
             InitializeComponent();
@@ -63,6 +63,7 @@ namespace darts.Pages.Games
             aimAnimation.To = new Thickness(aimScale.Width + aimScale.Margin.Left - aim.Width, aim.Margin.Top, 0, 0);
             aimAnimation.RepeatBehavior = RepeatBehavior.Forever;
             aimAnimation.AutoReverse = true;
+            aimAnimation.SpeedRatio = 0.7;
             Storyboard.SetTargetName(aimAnimation, aim.Name);
             Storyboard.SetTargetProperty(aimAnimation, new PropertyPath(Image.MarginProperty));
             aimStoryboard.Children.Add(aimAnimation);
@@ -72,6 +73,12 @@ namespace darts.Pages.Games
             powerStoryboard.Begin(powerArrow, true);
             cornerStoryboard.Begin(cornerArrow, true);
             aimStoryboard.Begin(aim, true);
+        }
+        void continueArrowsAnimation()
+        {
+            powerStoryboard.Resume(powerArrow);
+            cornerStoryboard.Resume(cornerArrow);
+            aimStoryboard.Resume(aim);
         }
 
         public void start(object sender, RoutedEventArgs e)
@@ -85,27 +92,37 @@ namespace darts.Pages.Games
             game.setTarget(target);
 
         }
-        public void powerClick(object sender, RoutedEventArgs e)
-        {
-            powerStoryboard.Pause(powerArrow);
-            game.setPower(constnats.leftPower + (powerArrow.Margin.Left - powerGradient.Margin.Left) * ((constnats.rightPower - constnats.leftPower) / powerGradient.Width));
-        }
-        public void cornerClick(object sender, RoutedEventArgs e)
-        {
-            cornerStoryboard.Pause(cornerArrow);
-            game.setCorner(constnats.leftCorner + (cornerArrow.Margin.Left - cornerGradient.Margin.Left) * ((constnats.rightCorner - constnats.leftCorner) / cornerGradient.Width));
-
-        }
         public void throwClick(object sender, RoutedEventArgs e)
         {
-
+            curScale = 0;
+            throwButton.IsEnabled = false;
             game.doThrow((int)(aim.Margin.Left + aim.Width / 2 - drotik1.Width / 2));
-            beginArrowsAnimation();
+            continueArrowsAnimation();
             ansLabel.Content = game.curTry.points;
+
         }
-        public void aimStop(object sender, RoutedEventArgs e)
+        public void stopClick(object sender, RoutedEventArgs e)
         {
-            aimStoryboard.Pause(aim);
+            switch (curScale)
+            {
+                case 0:
+                    aimStoryboard.Pause(aim);
+                    break;
+                case 1:
+                    powerStoryboard.Pause(powerArrow);
+                    game.setPower(constnats.leftPower + (powerArrow.Margin.Left - powerGradient.Margin.Left) * ((constnats.rightPower - constnats.leftPower) / powerGradient.Width));
+                    break;
+                case 2:
+                    cornerStoryboard.Pause(cornerArrow);
+                    game.setCorner(constnats.leftCorner + (cornerArrow.Margin.Left - cornerGradient.Margin.Left) * ((constnats.rightCorner - constnats.leftCorner) / cornerGradient.Width));
+                    throwButton.IsEnabled = true;
+                    throwClick(sender, e);
+                    curScale = -1;
+                    
+                    break;
+                
+            }
+            curScale++;
         }
     }
 }
