@@ -24,7 +24,7 @@
 
         <Button x:Name="throwButton" Content="Бросить" HorizontalAlignment="Left" Margin="704,650,0,0" VerticalAlignment="Top" Height="49" Width="350" Background="#FF87FF77" FontSize="20" Click="throwClick" IsEnabled="False" Visibility="Hidden"/>
         <Label x:Name="ansLabel" Content="ansLabel" HorizontalAlignment="Left" Height="49" Margin="1154,110,0,0" VerticalAlignment="Top" Width="136" Foreground="White" FontSize="22"/>
-        
+
         <Label x:Name="cornerInfo" Content="угол:" HorizontalAlignment="Left" Height="49" Margin="563,582,0,0" VerticalAlignment="Top" Width="136" Foreground="White" FontSize="30"/>
         <Label x:Name="powerInfo" Content="сила:" HorizontalAlignment="Left" Height="49" Margin="563,514,0,0" VerticalAlignment="Top" Width="136" Foreground="White" FontSize="30"/>
         <Label x:Name="aimInfo" Content="прицел:" HorizontalAlignment="Left" Height="49" Margin="563,446,0,0" VerticalAlignment="Top" Width="136" Foreground="White" FontSize="30"/>
@@ -46,5 +46,14 @@
                 </Style>
             </Button.Style>
         </Button>
+        <ListView Name="playersScores" ItemsSource="{Binding playerScores}" Margin="20,440,767,64">
+            <GridView>
+                <GridViewColumn DisplayMemberBinding="{Binding NickName}" Width="200">Ник</GridViewColumn>
+                <GridViewColumn DisplayMemberBinding="{Binding Score}" Width="50">Цель</GridViewColumn>
+                <GridViewColumn DisplayMemberBinding="{Binding Level}" Width="100">Уровень</GridViewColumn>
+                <GridViewColumn DisplayMemberBinding="{Binding Points}" Width="50">Остаток</GridViewColumn>
+                <GridViewColumn DisplayMemberBinding="{Binding NumberThrow}" Width="50">Бросок</GridViewColumn>
+            </GridView>
+        </ListView>
     </Grid>
 </Page>

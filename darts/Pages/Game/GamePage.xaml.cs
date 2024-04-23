@@ -1,12 +1,12 @@
 ﻿using darts.db;
 using darts.db.Entities;
-using darts.Pages.Settings;
-using System;
+using darts.Models;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
+using System.Windows.Data;
 using System.Windows.Media.Animation;
 
 namespace darts.Pages.Games
@@ -30,16 +30,41 @@ namespace darts.Pages.Games
 
         Constants constnats = new Constants();
         public List<UserEntity> users { get; set; }
+
+        public ObservableCollection<PlayerScoreModel> playerScores { get; set; } = new ObservableCollection<PlayerScoreModel>();
+
         private ContextDB db = new ContextDB();
         private int curScale = 0;
         public GamePage()
         {
-            InitializeComponent();
-            users = db.Users.Where(u => u.IsPlaying).ToList();
-            if (!users.Any()) {
-            //TODO : вывести предупреждение и сделать редирект на страницу настроек
-            }
+            InitializeComponent();            
+            Loaded += GamePage_Loaded;
+            Binding binding = new Binding();
+            binding.Source = playerScores;  
         }
+        private void GamePage_Loaded(object sender, RoutedEventArgs e)
+        {
+            users = db.Users.Where(u => u.IsPlaying).ToList();
+            if (!users.Any())
+            {
+                //TODO : вывести предупреждение и сделать редирект на страницу настроек
+            }
+            
+            foreach (var user in users)
+            {
+                playerScores.Add(new PlayerScoreModel
+                {
+                    UserId = user.Id,
+                    NickName = user.NickName,
+                    Level = user.UserLevel,
+                    Score = user.Score,
+                    Points = user.Score,
+                    NumberThrow = 0
+                });
+            }
+
+        }
+
 
         void initArrowsAnimation()
         {

@@ -30,43 +30,11 @@ namespace darts.Pages.Settings
 
         private void checkBox_UnChecked(object sender, RoutedEventArgs e)
         {
-            //Закоментированный код был бы нужен, если бы мы не использовали ObservableCollection !!!!!
-
-            //var items = new List<UserEntity>();
-            //foreach (var item in usersList.Items.SourceCollection)
-            //{
-            //    var user = item as UserEntity;
-            //    if ((user != null) && (!user.IsPlaying))
-            //    {
-            //        items.Add((UserEntity)item);
-            //    }
-            //}
-
-            //var users = db.Users.Where(u => u.IsPlaying).ToList();
-            //var changeUsers = users.Intersect(items);
-            //var changeUser = users.FirstOrDefault(u => u.Id == changeUsers.FirstOrDefault().Id);
-            //changeUser.IsPlaying = false;
             db.SaveChanges();
         }
 
         private void checkBox_Checked(object sender, RoutedEventArgs e)
         {
-            //Закоментированный код был бы нужен, если бы мы не использовали ObservableCollection !!!!!
-
-            //var items = new List<UserEntity>();
-            //foreach (var item in usersList.Items.SourceCollection)
-            //{
-            //    var user = item as UserEntity;
-            //    if ((user != null) && (user.IsPlaying))
-            //    {
-            //        items.Add((UserEntity)item);
-            //    }
-            //}
-
-            //var users = db.Users.Where(u => !u.IsPlaying).ToList();
-            //var changeUsers = users.Intersect(items);
-            //var changeUser = users.FirstOrDefault(u => u.Id == changeUsers.FirstOrDefault().Id);
-            //changeUser.IsPlaying = false;
             db.SaveChanges();
         }
 
