@@ -20,9 +20,13 @@ namespace darts.Pages.Games
         Game game;
         ThicknessAnimation powerAnimation = new ThicknessAnimation();
         ThicknessAnimation cornerAnimation = new ThicknessAnimation();
+        ThicknessAnimation aimAnimation = new ThicknessAnimation();
+
 
         Storyboard powerStoryboard = new Storyboard();
         Storyboard cornerStoryboard = new Storyboard();
+        Storyboard aimStoryboard = new Storyboard();
+
 
         Constants constnats = new Constants();
         public List<UserEntity> users { get; set; }
@@ -54,11 +58,20 @@ namespace darts.Pages.Games
             Storyboard.SetTargetName(cornerAnimation, cornerArrow.Name);
             Storyboard.SetTargetProperty(cornerAnimation, new PropertyPath(Image.MarginProperty));
             cornerStoryboard.Children.Add(cornerAnimation);
+
+            aimAnimation.From = aim.Margin;
+            aimAnimation.To = new Thickness(aimScale.Width + aimScale.Margin.Left - aim.Width, aim.Margin.Top, 0, 0);
+            aimAnimation.RepeatBehavior = RepeatBehavior.Forever;
+            aimAnimation.AutoReverse = true;
+            Storyboard.SetTargetName(aimAnimation, aim.Name);
+            Storyboard.SetTargetProperty(aimAnimation, new PropertyPath(Image.MarginProperty));
+            aimStoryboard.Children.Add(aimAnimation);
         }
         void beginArrowsAnimation()
         {
             powerStoryboard.Begin(powerArrow, true);
             cornerStoryboard.Begin(cornerArrow, true);
+            aimStoryboard.Begin(aim, true);
         }
 
         public void start(object sender, RoutedEventArgs e)
@@ -85,19 +98,14 @@ namespace darts.Pages.Games
         }
         public void throwClick(object sender, RoutedEventArgs e)
         {
+
             game.doThrow((int)(aim.Margin.Left + aim.Width / 2 - drotik1.Width / 2));
             beginArrowsAnimation();
             ansLabel.Content = game.curTry.points;
         }
-        public void aimChange(object sender, RoutedEventArgs e)
+        public void aimStop(object sender, RoutedEventArgs e)
         {
-            var curPos = Mouse.GetPosition(this);
-            var leftX = target.Margin.Left;
-            var rightX = target.Margin.Left + target.Width;
-            if(curPos.X <= rightX && curPos.X >= leftX)
-            {
-                aim.Margin = new Thickness(curPos.X - aim.Width / 2, aim.Margin.Top, 0, 0);
-            }
+            aimStoryboard.Pause(aim);
         }
     }
 }

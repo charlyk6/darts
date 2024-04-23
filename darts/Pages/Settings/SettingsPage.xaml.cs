@@ -80,16 +80,6 @@ namespace darts.Pages.Settings
                 db.Users.Add(User);
                 db.SaveChanges();
 
-                //usersModels.Add(new UserModel(User));
-        //Пример добавления других данных
-                //db.Games.Add(new GameEntity
-                //{
-                //    Date = DateTime.Now,
-                //    Title = "Первая игра"                    
-                //});
-                db.SaveChanges();
-                //usersList.Items.Refresh();
-
             }
         }
 

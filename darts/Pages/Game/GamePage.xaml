@@ -26,7 +26,7 @@
         <Label x:Name="ansLabel" Content="ansLabel" HorizontalAlignment="Left" Height="49" Margin="1080,110,0,0" VerticalAlignment="Top" Width="136" Foreground="White" FontSize="22"/>
         <Label x:Name="cornerInfo" Content="угол:" HorizontalAlignment="Left" Height="49" Margin="801,618,0,0" VerticalAlignment="Top" Width="136" Foreground="White" FontSize="30"/>
         <Label x:Name="powerInfo" Content="сила:" HorizontalAlignment="Left" Height="49" Margin="801,550,0,0" VerticalAlignment="Top" Width="136" Foreground="White" FontSize="30"/>
-        <Image x:Name="aimScale" HorizontalAlignment="Left" Height="49" Margin="600,400,0,0" VerticalAlignment="Top" Width="350" Source="/Pages/Game/aim.png" MouseDown="aimChange"/>
-        <Image x:Name ="aim" HorizontalAlignment="Left" Height="49" Margin="600,400,0,0" VerticalAlignment="Top" Width="14" Source="/Pages/Game/strelka.png" MouseDown="aimChange"/>
+        <Image x:Name="aimScale" HorizontalAlignment="Left" Height="49" Margin="600,400,0,0" VerticalAlignment="Top" Width="350" Source="/Pages/Game/aim.png" MouseDown="aimStop"/>
+        <Image x:Name ="aim" HorizontalAlignment="Left" Height="49" Margin="600,400,0,0" VerticalAlignment="Top" Width="14" Source="/Pages/Game/strelka.png" MouseDown="aimStop"/>
     </Grid>
 </Page>
