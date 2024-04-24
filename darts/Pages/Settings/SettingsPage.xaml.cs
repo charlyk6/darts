@@ -63,7 +63,12 @@ namespace darts.Pages.Settings
             // получаем выделенный объект
             UserEntity? user = usersList.SelectedItem as UserEntity;
             // если ни одного объекта не выделено, выходим
-            if (user is null) return;
+            if (user is null)
+            {
+                var msgWindow = new MessageWindow("Выберите игрока");
+                msgWindow.ShowDialog();
+                return;
+            }
 
             //UserEntity? user = userM.getEntity();
             
@@ -102,8 +107,13 @@ namespace darts.Pages.Settings
             // получаем выделенный объект
             UserEntity? user = usersList.SelectedItem as UserEntity;
             // если ни одного объекта не выделено, выходим
-            if (user is null) return;
-            
+            if (user is null)
+            {
+                var msgWindow = new MessageWindow("Выберите игрока");
+                msgWindow.ShowDialog();
+                return;
+            }
+
             //UserEntity user = userM.getEntity();
             //usersModels.Remove(userM);
             db.Users.Remove(user);
