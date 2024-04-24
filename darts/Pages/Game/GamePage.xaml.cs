@@ -48,12 +48,14 @@ namespace darts.Pages.Games
         }
         private void GamePage_Loaded(object sender, RoutedEventArgs e)
         {
+            db = new ContextDB();
             users = db.Users.Where(u => u.IsPlaying).ToList();
             if (!users.Any())
             {
                 //TODO : вывести предупреждение и сделать редирект на страницу настроек
             }
-            
+
+            playerScores.Clear();
             foreach (var user in users)
             {
                 playerScores.Add(new PlayerScoreModel
