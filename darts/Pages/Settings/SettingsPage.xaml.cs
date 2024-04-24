@@ -1,8 +1,10 @@
 ﻿using darts.db;
 using darts.db.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Collections.Generic;
 
 namespace darts.Pages.Settings
 {
@@ -27,7 +29,11 @@ namespace darts.Pages.Settings
             // и устанавливаем данные в качестве контекста
             DataContext = db.Users.Local.ToObservableCollection();
         }
-
+        public List<UserEntity> getUsers()
+        {
+            var users = db.Users.Local.ToList();
+            return users;
+        }
         private void checkBox_UnChecked(object sender, RoutedEventArgs e)
         {
             db.SaveChanges();

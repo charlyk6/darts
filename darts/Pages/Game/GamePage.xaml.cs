@@ -41,14 +41,14 @@ namespace darts.Pages.Games
             Loaded += GamePage_Loaded;
             //Binding binding = new Binding();
             //binding.Source = playerScores;  
-            //C этим не работает,так возможно лучше, но по через DataContext сделал
+            //C этим не работает,так возможно лучше, но пока через DataContext сделал
 
 
             DataContext = playerScores;
         }
         private void GamePage_Loaded(object sender, RoutedEventArgs e)
         {
-            db = new ContextDB();
+            db = new ContextDB();//мб это костыль
             users = db.Users.Where(u => u.IsPlaying).ToList();
             if (!users.Any())
             {

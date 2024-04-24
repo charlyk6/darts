@@ -1,4 +1,5 @@
-﻿using darts.db.Entities;
+﻿using darts.db;
+using darts.db.Entities;
 using darts.Pages.Games;
 using darts.Pages.Settings;
 using System.Collections.Generic;
@@ -28,13 +29,36 @@ namespace darts.Pages
         {
             MainFrame.NavigationService.Navigate(settings);
         }
-
+        private bool checkEmpty()
+        {
+            var users = settings.getUsers();
+            int cnt = 0;
+            foreach (var user in users)
+            {
+                if(user.IsPlaying) cnt++;
+            }
+            if(cnt==0) return true;
+            return false;
+        }
         private void GameButton_OnClick(object sender, RoutedEventArgs e)
         {
+            if (checkEmpty())
+            {
+                var msgWindow = new MessageWindow("Выберите хотя бы одного игрока");
+                msgWindow.ShowDialog();
+                return;
+            }
             MainFrame.NavigationService.Navigate(game);
+
         }
         private void NewGameButton_OnClick(object sender, RoutedEventArgs e)
         {
+            if (checkEmpty())
+            {
+                var msgWindow = new MessageWindow("Выберите хотя бы одного игрока");
+                msgWindow.ShowDialog();
+                return;
+            }
             game = new GamePage();
             MainFrame.NavigationService.Navigate(game);
         }
