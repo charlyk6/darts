@@ -15,7 +15,7 @@ namespace darts.Pages
     /// </summary>
     public partial class MainWindow : Window
     {
-        private GamePage game { get; set; } = new GamePage();
+        private GamePage game { get; set; }
         private SettingsPage settings { get; set; }
         public MainWindow()
         {
@@ -48,6 +48,7 @@ namespace darts.Pages
                 msgWindow.ShowDialog();
                 return;
             }
+            if(game == null) game = new GamePage();
             MainFrame.NavigationService.Navigate(game);
 
         }

@@ -45,15 +45,18 @@ namespace darts.Pages.Games
 
 
             DataContext = playerScores;
+            initUsers();
+            start();
+
         }
         private void GamePage_Loaded(object sender, RoutedEventArgs e)
         {
+            initUsers();
+        }
+        private void initUsers()
+        {
             db = new ContextDB();//мб это костыль
             users = db.Users.Where(u => u.IsPlaying).ToList();
-            if (!users.Any())
-            {
-                //TODO : вывести предупреждение и сделать редирект на страницу настроек
-            }
 
             playerScores.Clear();
             foreach (var user in users)
@@ -112,7 +115,7 @@ namespace darts.Pages.Games
             aimStoryboard.Resume(aim);
         }
 
-        public void start(object sender, RoutedEventArgs e)
+        public void start()
         {
 
             initArrowsAnimation();

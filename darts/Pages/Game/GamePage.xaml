@@ -10,7 +10,7 @@
         <ImageBrush ImageSource="/Resources/fon.jpg" Stretch="Fill" />
     </Page.Background>
     <Grid>
-        <Image x:Name="target" HorizontalAlignment="Left" Height="350" Margin="704,30,0,0" VerticalAlignment="Top" Width="350" Source="/Resources/target2.png" Loaded="start"/>
+        <Image x:Name="target" HorizontalAlignment="Left" Height="350" Margin="704,30,0,0" VerticalAlignment="Top" Width="350" Source="/Resources/target2.png"/>
 
         <Image x:Name="powerGradient" HorizontalAlignment="Left" Height="49" Margin="704,514,0,0" VerticalAlignment="Top" Width="350" Source="/Resources/gradient.png"/>
         <Image x:Name="powerArrow" HorizontalAlignment="Left" Height="49" Margin="704,514,0,0" VerticalAlignment="Top" Width="14" Source="/Resources/strelka.png"/>
