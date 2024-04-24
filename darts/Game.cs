@@ -1,7 +1,9 @@
 ﻿using darts.db.Entities;
+using darts.Models;
 using darts.Pages.Settings;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -11,12 +13,12 @@ namespace darts
 {
     public class Game
     {
-        public List<UserEntity> users { get; set; }
+        public ObservableCollection<PlayerScoreModel> users { get; set; }
         public Try curTry = new Try();
-        Image drotik1, drotik2, drotik3;
+        Image? drotik1, drotik2, drotik3;
         public int curUser = 0;
         public int curThrow = 0;
-        public Game(List<UserEntity> us) {
+        public Game(ObservableCollection<PlayerScoreModel> us) {
             users = us;
         }
        
@@ -49,7 +51,7 @@ namespace darts
                 curUser %= users.Count;
             }
             curTry.doThrow(x);
-
+            users[curUser].NumberThrow = curTry.points;
         }
     }
 }

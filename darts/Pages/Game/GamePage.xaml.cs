@@ -121,18 +121,18 @@ namespace darts.Pages.Games
             initArrowsAnimation();
 
             beginArrowsAnimation();
-            game = new Game(users);
+            game = new Game(playerScores);
             game.initDrotiks(drotik1, drotik2, drotik3);
             game.setTarget(target);
 
         }
-        public void throwClick(object sender, RoutedEventArgs e)
+        public void throwClick()
         {
             curScale = 0;
-            throwButton.IsEnabled = false;
             game.doThrow((int)(aim.Margin.Left + aim.Width / 2 - drotik1.Width / 2));
             continueArrowsAnimation();
             ansLabel.Content = game.curTry.points;
+                    playersScores.Items.Refresh();
 
         }
         public void stopClick(object sender, RoutedEventArgs e)
@@ -149,8 +149,7 @@ namespace darts.Pages.Games
                 case 2:
                     cornerStoryboard.Pause(cornerArrow);
                     game.setCorner(constnats.leftCorner + (cornerArrow.Margin.Left - cornerGradient.Margin.Left) * ((constnats.rightCorner - constnats.leftCorner) / cornerGradient.Width));
-                    throwButton.IsEnabled = true;
-                    throwClick(sender, e);
+                    throwClick();
                     curScale = -1;
                     
                     break;

@@ -22,7 +22,6 @@
         <Image x:Name="drotik2" HorizontalAlignment="Left" Margin="600,100,0,0" Height="20" Width="20" VerticalAlignment="Top" Source="/Resources/drotik_textura.png" Visibility="Hidden"/>
         <Image x:Name="drotik3" HorizontalAlignment="Left" Margin="600,110,0,0" Height="20" Width="20" VerticalAlignment="Top" Source="/Resources/drotik_textura.png" Visibility="Hidden"/>
 
-        <Button x:Name="throwButton" Content="Бросить" HorizontalAlignment="Left" Margin="704,650,0,0" VerticalAlignment="Top" Height="49" Width="350" Background="#FF87FF77" FontSize="20" Click="throwClick" IsEnabled="False" Visibility="Hidden"/>
         <Label x:Name="ansLabel" Content="ansLabel" HorizontalAlignment="Left" Height="49" Margin="1154,110,0,0" VerticalAlignment="Top" Width="136" Foreground="White" FontSize="22"/>
 
         <Label x:Name="cornerInfo" Content="угол:" HorizontalAlignment="Left" Height="49" Margin="563,582,0,0" VerticalAlignment="Top" Width="136" Foreground="White" FontSize="30"/>
