@@ -39,8 +39,12 @@ namespace darts.Pages.Games
         {
             InitializeComponent();            
             Loaded += GamePage_Loaded;
-            Binding binding = new Binding();
-            binding.Source = playerScores;  
+            //Binding binding = new Binding();
+            //binding.Source = playerScores;  
+            //C этим не работает,так возможно лучше, но по через DataContext сделал
+
+
+            DataContext = playerScores;
         }
         private void GamePage_Loaded(object sender, RoutedEventArgs e)
         {

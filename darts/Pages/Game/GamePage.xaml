@@ -37,7 +37,7 @@
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="Button">
-                                <Border CornerRadius="50" Background="#FF727272" BorderBrush="Black" BorderThickness="2">
+                                <Border CornerRadius="100" Background="#FF727272" BorderBrush="Black" BorderThickness="2">
                                     <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                             </ControlTemplate>
@@ -46,14 +46,16 @@
                 </Style>
             </Button.Style>
         </Button>
-        <ListView Name="playersScores" ItemsSource="{Binding playerScores}" Margin="20,440,767,64">
-            <GridView>
-                <GridViewColumn DisplayMemberBinding="{Binding NickName}" Width="200">Ник</GridViewColumn>
-                <GridViewColumn DisplayMemberBinding="{Binding Score}" Width="50">Цель</GridViewColumn>
-                <GridViewColumn DisplayMemberBinding="{Binding Level}" Width="100">Уровень</GridViewColumn>
-                <GridViewColumn DisplayMemberBinding="{Binding Points}" Width="50">Остаток</GridViewColumn>
-                <GridViewColumn DisplayMemberBinding="{Binding NumberThrow}" Width="50">Бросок</GridViewColumn>
-            </GridView>
+        <ListView Name="playersScores" ItemsSource="{Binding}" Margin="20,440,767,64" Width="520">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding NickName}" Width="200">Ник</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Score}" Width="70">Цель</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Level}" Width="100">Уровень</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Points}" Width="70">Остаток</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding NumberThrow}" Width="70">Бросок</GridViewColumn>
+                </GridView>
+            </ListView.View>
         </ListView>
     </Grid>
 </Page>
