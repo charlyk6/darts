@@ -25,6 +25,10 @@ namespace darts.Models
         /// </summary>
         public int? Points { get; set; }
         /// <summary>
+        /// Последний бросок
+        /// </summary>
+        public int? LastThrow { get; set; }
+        /// <summary>
         /// Номер броска
         /// </summary>
         public int NumberThrow { get; set; }        

@@ -13,13 +13,13 @@ namespace darts
 {
     public class Game
     {
-        public ObservableCollection<PlayerScoreModel> users { get; set; }
+        public ObservableCollection<PlayerScoreModel> playerScores { get; set; }
         public Try curTry = new Try();
         Image? drotik1, drotik2, drotik3;
         public int curUser = 0;
         public int curThrow = 0;
         public Game(ObservableCollection<PlayerScoreModel> us) {
-            users = us;
+            playerScores = us;
         }
        
         public void initDrotiks(Image d1, Image d2, Image d3)
@@ -43,15 +43,19 @@ namespace darts
         }
         public void doThrow(int x)
         {
-            curThrow++;
+            
             if(curThrow == 3)
             {
                 curThrow = 0;
                 curUser++;
-                curUser %= users.Count;
+                curUser %= playerScores.Count;
             }
             curTry.doThrow(x);
-            users[curUser].NumberThrow = curTry.points;
+            playerScores[curUser].LastThrow = curTry.points;
+            playerScores[curUser].NumberThrow++;
+            playerScores[curUser].Points -= curTry.points;
+
+            curThrow++;
         }
     }
 }

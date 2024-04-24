@@ -22,7 +22,7 @@
             <RowDefinition />
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
-        <ListView Name="usersList" ItemsSource="{Binding}">
+        <ListView Name="usersList" ItemsSource="{Binding}" FontSize="16">
             <ListView.Resources>
                 <DataTemplate x:Key="FirstCell">
                     <StackPanel Orientation="Horizontal">

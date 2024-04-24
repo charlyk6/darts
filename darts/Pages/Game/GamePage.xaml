@@ -45,14 +45,15 @@
                 </Style>
             </Button.Style>
         </Button>
-        <ListView Name="playersScores" ItemsSource="{Binding}" Margin="20,440,767,64" Width="520">
+        <ListView Name="playersScores" ItemsSource="{Binding}" Margin="20,440,767,64" Width="520" d:ItemsSource="{d:SampleData ItemCount=5}" FontSize="16">
             <ListView.View>
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding NickName}" Width="200">Ник</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Score}" Width="70">Цель</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Level}" Width="100">Уровень</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Points}" Width="70">Остаток</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding NumberThrow}" Width="70">Бросок</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Score}" Width="50">Цель</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Level}" Width="70">Уровень</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Points}" Width="50">Остаток</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding LastThrow}" Width="50">Бросок</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding NumberThrow}" Width="70">Номер броска</GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>

@@ -68,6 +68,7 @@ namespace darts.Pages.Games
                     Level = user.UserLevel,
                     Score = user.Score,
                     Points = user.Score,
+                    LastThrow = 0,
                     NumberThrow = 0
                 });
             }
