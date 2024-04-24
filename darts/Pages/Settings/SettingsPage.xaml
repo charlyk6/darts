@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:darts.Pages.Settings"
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
+      d:DesignHeight="500" d:DesignWidth="800"
       Title="SettingsPage">
 
     <Page.Resources>
@@ -22,7 +22,7 @@
             <RowDefinition />
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
-        <ListView Name="usersList" ItemsSource="{Binding}" FontSize="16">
+        <ListView Name="usersList" ItemsSource="{Binding}" FontSize="20">
             <ListView.Resources>
                 <DataTemplate x:Key="FirstCell">
                     <StackPanel Orientation="Horizontal">
@@ -32,12 +32,12 @@
             </ListView.Resources>
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Width="50" Header="Играет" CellTemplate="{StaticResource FirstCell}"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding NickName}" Width="100">Ник</GridViewColumn>
+                    <GridViewColumn Width="100" Header="Играет" CellTemplate="{StaticResource FirstCell}"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding NickName}" Width="150">Ник</GridViewColumn>
                     <GridViewColumn DisplayMemberBinding="{Binding FirstName}" Width="100">Имя</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding LastName}" Width="100">Фамилия</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding LastName}" Width="150">Фамилия</GridViewColumn>
                     <GridViewColumn DisplayMemberBinding="{Binding UserLevel}" Width="100">Уровень</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Score}" Width="100">Кол-во очков</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Score}" Width="150">Кол-во очков</GridViewColumn>
                 </GridView>
             </ListView.View>
             

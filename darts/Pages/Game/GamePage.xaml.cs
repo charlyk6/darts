@@ -132,6 +132,8 @@ namespace darts.Pages.Games
             curScale = 0;
             game.doThrow((int)(aim.Margin.Left + aim.Width / 2 - drotik1.Width / 2));
             continueArrowsAnimation();
+            //Нужно перенести в другое место, чтобы выводит чей бросок
+            currentPlayer.Content = playerScores.FirstOrDefault()?.NickName ?? string.Empty;
             ansLabel.Content = game.curTry.points;
                     playersScores.Items.Refresh();
 

@@ -5,19 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:darts.Pages"
         mc:Ignorable="d"       
-        Title="darts" Height="700" Width="1300"
-        WindowStartupLocation="CenterScreen"
-        WindowState="Maximized">
+        Title="darts" Height="800" Width="1550"
+        WindowStartupLocation="CenterScreen"        >
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="160" />
+            <ColumnDefinition Width="200" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Border Grid.Column="0" BorderBrush="#4c4b51" BorderThickness="0,0,1,0">
             <ListView Grid.Column="0" >
-                <StackPanel Orientation="Horizontal" Width="140">
+                <StackPanel Orientation="Horizontal" Width="180">
                     <Image></Image>
-                    <Button Name="Settings" Width="130" Click="SettingsButton_OnClick" Margin="2" FontSize="16">
+                    <Button Name="Settings" Width="180" Click="SettingsButton_OnClick" Margin="2" FontSize="16">
                         <Button.Background>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                 <GradientStop Color="Black"/>
@@ -27,9 +26,9 @@
                         Настройки
                     </Button>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Width="140">
+                <StackPanel Orientation="Horizontal" Width="180">
 
-                    <Button Name="Game" Width="130" Click="GameButton_OnClick" Margin="2" FontSize="16">
+                    <Button Name="Game" Width="180" Click="GameButton_OnClick" Margin="2" FontSize="16">
                         <Button.Background>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                 <GradientStop Color="Black"/>
@@ -39,12 +38,7 @@
                         Игра
                     </Button>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Width="140">
-
-                    <Button Name="NewGame" Width="130" Click="NewGameButton_OnClick" Margin="2" FontSize="16" BorderBrush="#00000000">
-                        Новая игра
-                    </Button>
-                </StackPanel>
+                <StackPanel Orientation="Horizontal" Width="140"/>
 
             </ListView>
         </Border>

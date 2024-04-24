@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:darts.Pages.Games"
       mc:Ignorable="d"
-      Title="darts" Width="1317" Height="749">
+      Title="darts" Width="1350" Height="750">
     <Page.Background>
         <ImageBrush ImageSource="/Resources/fon.jpg" Stretch="Fill" />
     </Page.Background>
@@ -22,7 +22,9 @@
         <Image x:Name="drotik2" HorizontalAlignment="Left" Margin="600,100,0,0" Height="20" Width="20" VerticalAlignment="Top" Source="/Resources/drotik_textura.png" Visibility="Hidden"/>
         <Image x:Name="drotik3" HorizontalAlignment="Left" Margin="600,110,0,0" Height="20" Width="20" VerticalAlignment="Top" Source="/Resources/drotik_textura.png" Visibility="Hidden"/>
 
-        <Label x:Name="ansLabel" Content="ansLabel" HorizontalAlignment="Left" Height="49" Margin="1154,110,0,0" VerticalAlignment="Top" Width="136" Foreground="White" FontSize="22"/>
+        <Label x:Name="currentPlayer" Content="currentPlayer" HorizontalAlignment="Left" Height="49" Margin="200,150,0,0" VerticalAlignment="Top" Width="136" Foreground="White" FontSize="35"/>
+        <Label x:Name="lastThrow" Content="бросок:" HorizontalAlignment="Left" Height="49" Margin="200,200,0,0" VerticalAlignment="Top" Width="136" Foreground="White" FontSize="22"/>
+        <Label x:Name="ansLabel" Content="ansLabel" HorizontalAlignment="Left" Height="85" Margin="210,250,0,0" VerticalAlignment="Top" Width="195" Foreground="White" FontSize="40"/>
 
         <Label x:Name="cornerInfo" Content="угол:" HorizontalAlignment="Left" Height="49" Margin="563,582,0,0" VerticalAlignment="Top" Width="136" Foreground="White" FontSize="30"/>
         <Label x:Name="powerInfo" Content="сила:" HorizontalAlignment="Left" Height="49" Margin="563,514,0,0" VerticalAlignment="Top" Width="136" Foreground="White" FontSize="30"/>
@@ -45,15 +47,15 @@
                 </Style>
             </Button.Style>
         </Button>
-        <ListView Name="playersScores" ItemsSource="{Binding}" Margin="20,440,767,64" Width="520" d:ItemsSource="{d:SampleData ItemCount=5}" FontSize="16">
+        <ListView Name="playersScores" ItemsSource="{Binding}" Margin="20,440,795,64" d:ItemsSource="{d:SampleData ItemCount=5}" FontSize="16">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding NickName}" Width="200">Ник</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding NickName}" Width="150">Ник</GridViewColumn>
                     <GridViewColumn DisplayMemberBinding="{Binding Score}" Width="50">Цель</GridViewColumn>
                     <GridViewColumn DisplayMemberBinding="{Binding Level}" Width="70">Уровень</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Points}" Width="50">Остаток</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding LastThrow}" Width="50">Бросок</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding NumberThrow}" Width="70">Номер броска</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Points}" Width="70">Остаток</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding LastThrow}" Width="70">Бросок</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding NumberThrow}" Width="110">Номер броска</GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>

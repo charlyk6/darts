@@ -10,6 +10,7 @@
   <ItemGroup>
     <None Remove="Pages\Game\aim.png" />
     <None Remove="Pages\Game\aim2.png" />
+    <None Remove="Pages\Game\red-button.png" />
     <None Remove="Resources\1drotik.png" />
     <None Remove="Resources\2drotiks.png" />
     <None Remove="Resources\3drotiks.png" />
@@ -29,6 +30,7 @@
 
   <ItemGroup>
     <Resource Include="Pages\Game\aim.png" />
+    <Resource Include="Pages\Game\red-button.png" />
     <Resource Include="Resources\1drotik.png" />
     <Resource Include="Resources\2drotiks.png" />
     <Resource Include="Resources\3drotiks.png" />
