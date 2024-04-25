@@ -29,6 +29,12 @@ namespace darts.Pages.Settings
             // и устанавливаем данные в качестве контекста
             DataContext = db.Users.Local.ToObservableCollection();
         }
+
+        public List<UserEntity> getActivePlayers()
+        {
+            return db.Users.Where(u => u.IsPlaying).ToList();
+        }
+
         public List<UserEntity> getUsers()
         {
             var users = db.Users.Local.ToList();

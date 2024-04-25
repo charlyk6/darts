@@ -1,12 +1,15 @@
 ﻿using darts.db;
 using darts.db.Entities;
 using darts.Models;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Media;
 using System.Windows.Media.Animation;
 
 namespace darts.Pages.Games
@@ -38,24 +41,31 @@ namespace darts.Pages.Games
         public GamePage()
         {
             InitializeComponent();            
-            Loaded += GamePage_Loaded;
-            //Binding binding = new Binding();
-            //binding.Source = playerScores;  
-            //C этим не работает,так возможно лучше, но пока через DataContext сделал
-
+            GameLoaded();
 
             DataContext = playerScores;
-            initUsers();
             start();
+        }
+
+        private void GameLoaded()
+        {
+            var gameId = CreateNewGame();
+            InitPlayers(gameId);
 
         }
-        private void GamePage_Loaded(object sender, RoutedEventArgs e)
+
+        private int CreateNewGame()
         {
-            initUsers();
+            db.Games.Add(new GameEntity
+            {
+                Date = DateTime.Now                
+            });
+            var gameId = db.SaveChanges();
+
+            return gameId;
         }
-        private void initUsers()
+        private void InitPlayers(int gameId)
         {
-            db = new ContextDB();//мб это костыль
             users = db.Users.Where(u => u.IsPlaying).ToList();
 
             playerScores.Clear();
@@ -71,8 +81,15 @@ namespace darts.Pages.Games
                     LastThrow = 0,
                     NumberThrow = 0
                 });
+                db.UsersGames.Add(new UsersGameEntity
+                {
+                    GameId = gameId,
+                    UserId = user.Id,
+                    Level = user.UserLevel,
+                    Total = user.Score
+                });
             }
-
+            db.SaveChanges();
         }
 
 
@@ -102,26 +119,19 @@ namespace darts.Pages.Games
             Storyboard.SetTargetName(aimAnimation, aim.Name);
             Storyboard.SetTargetProperty(aimAnimation, new PropertyPath(Image.MarginProperty));
             aimStoryboard.Children.Add(aimAnimation);
-        }
-        void beginArrowsAnimation()
-        {
-            powerStoryboard.Begin(powerArrow, true);
-            cornerStoryboard.Begin(cornerArrow, true);
-            aimStoryboard.Begin(aim, true);
-        }
-        void continueArrowsAnimation()
-        {
-            powerStoryboard.Resume(powerArrow);
-            cornerStoryboard.Resume(cornerArrow);
-            aimStoryboard.Resume(aim);
-        }
+        }     
+       
 
         public void start()
         {
-
             initArrowsAnimation();
+            //Необходимо вывести что ходит первый игрок
+            var player1 = users?.FirstOrDefault()?.NickName ?? string.Empty;
+            currentPlayer.Content = player1;
 
-            beginArrowsAnimation();
+            aimStoryboard.Begin(aim, true);
+            
+
             game = new Game(playerScores);
             game.initDrotiks(drotik1, drotik2, drotik3);
             game.setTarget(target);
@@ -131,9 +141,8 @@ namespace darts.Pages.Games
         {
             curScale = 0;
             game.doThrow((int)(aim.Margin.Left + aim.Width / 2 - drotik1.Width / 2));
-            continueArrowsAnimation();
+            aimStoryboard.Resume(aim);
             //Нужно перенести в другое место, чтобы выводит чей бросок
-            currentPlayer.Content = playerScores.FirstOrDefault()?.NickName ?? string.Empty;
             ansLabel.Content = game.curTry.points;
                     playersScores.Items.Refresh();
 
@@ -144,14 +153,17 @@ namespace darts.Pages.Games
             {
                 case 0:
                     aimStoryboard.Pause(aim);
+                    powerStoryboard.Begin(powerArrow, true);
                     break;
                 case 1:
                     powerStoryboard.Pause(powerArrow);
+                    cornerStoryboard.Begin(cornerArrow, true);
                     game.setPower(constnats.leftPower + (powerArrow.Margin.Left - powerGradient.Margin.Left) * ((constnats.rightPower - constnats.leftPower) / powerGradient.Width));
                     break;
                 case 2:
                     cornerStoryboard.Pause(cornerArrow);
                     game.setCorner(constnats.leftCorner + (cornerArrow.Margin.Left - cornerGradient.Margin.Left) * ((constnats.rightCorner - constnats.leftCorner) / cornerGradient.Width));
+                    
                     throwClick();
                     curScale = -1;
                     
@@ -160,5 +172,7 @@ namespace darts.Pages.Games
             }
             curScale++;
         }
+
+        
     }
 }
