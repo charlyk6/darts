@@ -1,13 +1,6 @@
-﻿using darts.db.Entities;
-using darts.Models;
-using darts.Pages.Settings;
-using System;
-using System.Collections.Generic;
+﻿using darts.Models;
 using System.Collections.ObjectModel;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows.Media.Animation;
 
 namespace darts
 {
@@ -51,9 +44,8 @@ namespace darts
                 curUser %= playerScores.Count;
             }
             curTry.doThrow(x);
-            playerScores[curUser].LastThrow = curTry.points;
             playerScores[curUser].NumberThrow++;
-            playerScores[curUser].Points -= curTry.points;
+            playerScores[curUser].Scores -= curTry.points;
 
             curThrow++;
         }

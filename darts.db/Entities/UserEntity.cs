@@ -6,7 +6,7 @@ namespace darts.db.Entities
     {
         /// <summary>
         /// фамилия
-        /// </summary>
+        /// </summary>S
         public string? LastName { get; set; }
         /// <summary>
         /// имя
@@ -17,9 +17,9 @@ namespace darts.db.Entities
         /// </summary>
         public string? NickName { get; set;}
         /// <summary>
-        /// Кол-во очков, которые надо набрать игроку
+        /// Кол-во очков, которые надо набрать игроку 
         /// </summary>
-        public int? Score { get; set; }
+        public int? Total { get; set; }
         /// <summary>
         /// Уровень сложности
         /// </summary>

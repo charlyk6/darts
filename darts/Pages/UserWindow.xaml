@@ -15,7 +15,7 @@
             <Setter Property="Margin" Value="8" />
         </Style>
     </Window.Resources>                    
-    <Grid>
+    <Grid >
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition />
@@ -28,17 +28,17 @@
             <ColumnDefinition Width="100" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <TextBlock Text="Имя" Grid.Row="0" />
-        <TextBlock Text="Фамилия" Grid.Row="1" />
-        <TextBlock Text="Ник" Grid.Row="2" />
-        <TextBlock Text="Уровень" Grid.Row="3" />
-        <TextBlock Text="Кол-во очков" Grid.Row="4" />
+        <TextBlock Text="Имя" Grid.Row="0" FontSize="14"  />
+        <TextBlock Text="Фамилия" Grid.Row="1" FontSize="14" />
+        <TextBlock Text="Ник" Grid.Row="2" FontSize="14" />
+        <TextBlock Text="Уровень" Grid.Row="3" FontSize="14" />
+        <TextBlock Text="Кол-во очков" Grid.Row="4" FontSize="14" />
 
-        <TextBox Text="{Binding FirstName}" Grid.Column="1" Grid.Row="0"/>
-        <TextBox Text="{Binding LastName}" Grid.Column="1" Grid.Row="1" />
-        <TextBox Text="{Binding NickName}" Grid.Column="1" Grid.Row="2"  />
-        <TextBox Text="{Binding UserLevel}" Grid.Column="1" Grid.Row="3"  />
-        <TextBox Text="{Binding Score}" Grid.Column="1" Grid.Row="4"  />
+        <TextBox Text="{Binding FirstName}" Grid.Column="1" Grid.Row="0" FontSize="14"/>
+        <TextBox Text="{Binding LastName}" Grid.Column="1" Grid.Row="1" FontSize="14"/>
+        <TextBox Text="{Binding NickName}" Grid.Column="1" Grid.Row="2"  FontSize="14"/>
+        <TextBox Text="{Binding UserLevel}" Grid.Column="1" Grid.Row="3"  FontSize="14"/>
+        <TextBox Text="{Binding Total}" Grid.Column="1" Grid.Row="4"  FontSize="14"/>
 
         <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="5" Grid.Column="1">
             <Button IsDefault="True" Click="Accept_Click" Height="30" >OK</Button>

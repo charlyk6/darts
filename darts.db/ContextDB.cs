@@ -8,7 +8,6 @@ namespace darts.db
         public DbSet<UserEntity> Users { get; set; } = null!;
         public DbSet<GameEntity> Games { get; set; } = null!;
         public DbSet<UsersGameEntity> UsersGames { get; set; } = null!;
-        public DbSet<ThrowEntity> Throws { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

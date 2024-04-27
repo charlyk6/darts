@@ -1,6 +1,7 @@
 ﻿using darts.db;
 using darts.db.Entities;
 using darts.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -40,7 +41,7 @@ namespace darts.Pages.Games
         private int curScale = 0;
         public GamePage()
         {
-            InitializeComponent();            
+            InitializeComponent();
             GameLoaded();
 
             DataContext = playerScores;
@@ -49,26 +50,67 @@ namespace darts.Pages.Games
 
         private void GameLoaded()
         {
-            var gameId = CreateNewGame();
-            InitPlayers(gameId);
+            int gameId;
+            //Проверяем нет ли НЕзаконченных игр:
+            var activeGames = FindActiveGames();
+            if (!activeGames.Any())
+            {
+                gameId = CreateNewGame();
+                InitPlayers(gameId);
+            }
+            else
+            {
+                LoadGamesItems(activeGames);
+            }
+        }
 
+
+        private List<GameEntity> FindActiveGames()
+        {
+            return db.Games
+                .Include(g => g.UsersGames)
+                    .ThenInclude(ug => ug.User)
+                .Where(g => !g.IsFinish).ToList();
         }
 
         private int CreateNewGame()
         {
             db.Games.Add(new GameEntity
             {
-                Date = DateTime.Now                
+                Date = DateTime.Now
             });
             var gameId = db.SaveChanges();
 
             return gameId;
         }
+
+        private void LoadGamesItems(List<GameEntity> games)
+        {
+            playerScores.Clear();
+            var game = games.FirstOrDefault();
+            if (game is not null)
+            {
+                var usersGames = game.UsersGames.ToList();
+                foreach (var usersGame in usersGames)
+                {
+                    playerScores.Add(new PlayerScoreModel
+                    {
+                        UserId = usersGame.UserId.Value,
+                        NickName = usersGame.User.NickName,
+                        Level = usersGame.Level,
+                        Total = usersGame.Total,
+                        Scores = usersGame.Scores,
+                        NumberThrow = usersGame.NumberThrow
+                    });
+                }
+            }
+        }
         private void InitPlayers(int gameId)
         {
-            users = db.Users.Where(u => u.IsPlaying).ToList();
-
             playerScores.Clear();
+            users = db.Users.Where(u => u.IsPlaying).ToList();
+            var usersGames = new List<UsersGameEntity>();
+            
             foreach (var user in users)
             {
                 playerScores.Add(new PlayerScoreModel
@@ -76,19 +118,19 @@ namespace darts.Pages.Games
                     UserId = user.Id,
                     NickName = user.NickName,
                     Level = user.UserLevel,
-                    Score = user.Score,
-                    Points = user.Score,
-                    LastThrow = 0,
+                    Total = user.Total,
+                    Scores = user.Total,
                     NumberThrow = 0
                 });
-                db.UsersGames.Add(new UsersGameEntity
+                usersGames.Add(new UsersGameEntity
                 {
                     GameId = gameId,
                     UserId = user.Id,
                     Level = user.UserLevel,
-                    Total = user.Score
+                    Total = user.Total
                 });
             }
+            db.UsersGames.AddRange(usersGames);
             db.SaveChanges();
         }
 
@@ -119,8 +161,8 @@ namespace darts.Pages.Games
             Storyboard.SetTargetName(aimAnimation, aim.Name);
             Storyboard.SetTargetProperty(aimAnimation, new PropertyPath(Image.MarginProperty));
             aimStoryboard.Children.Add(aimAnimation);
-        }     
-       
+        }
+
 
         public void start()
         {
@@ -130,21 +172,20 @@ namespace darts.Pages.Games
             currentPlayer.Content = player1;
 
             aimStoryboard.Begin(aim, true);
-            
+
 
             game = new Game(playerScores);
             game.initDrotiks(drotik1, drotik2, drotik3);
             game.setTarget(target);
 
         }
-        public void throwClick()
+        public void MakeThrow()
         {
-            curScale = 0;
             game.doThrow((int)(aim.Margin.Left + aim.Width / 2 - drotik1.Width / 2));
             aimStoryboard.Resume(aim);
             //Нужно перенести в другое место, чтобы выводит чей бросок
             ansLabel.Content = game.curTry.points;
-                    playersScores.Items.Refresh();
+            playersScores.Items.Refresh();
 
         }
         public void stopClick(object sender, RoutedEventArgs e)
@@ -154,25 +195,25 @@ namespace darts.Pages.Games
                 case 0:
                     aimStoryboard.Pause(aim);
                     powerStoryboard.Begin(powerArrow, true);
+                    curScale++;
                     break;
                 case 1:
                     powerStoryboard.Pause(powerArrow);
                     cornerStoryboard.Begin(cornerArrow, true);
                     game.setPower(constnats.leftPower + (powerArrow.Margin.Left - powerGradient.Margin.Left) * ((constnats.rightPower - constnats.leftPower) / powerGradient.Width));
+                    curScale++;
                     break;
                 case 2:
                     cornerStoryboard.Pause(cornerArrow);
                     game.setCorner(constnats.leftCorner + (cornerArrow.Margin.Left - cornerGradient.Margin.Left) * ((constnats.rightCorner - constnats.leftCorner) / cornerGradient.Width));
-                    
-                    throwClick();
-                    curScale = -1;
-                    
+
+                    MakeThrow();
+                    curScale = 0;
+
                     break;
-                
             }
-            curScale++;
         }
 
-        
+
     }
 }

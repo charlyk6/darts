@@ -5,25 +5,29 @@ namespace darts.db.Entities
     public class UsersGameEntity : BaseEntity
     {
         /// <summary>
-        /// Кол-во очков, которые надо набрать игроку
-        /// </summary>
-        public int? Total { get; set; }
-        /// <summary>
         /// Уровень сложности
         /// </summary>
         public Level Level { get; set; }
+
         /// <summary>
-        /// Броски
+        /// Кол-во очков, которые НАДО набрать игроку (цель игры)
         /// </summary>
-        public List<ThrowEntity> Throws { get; set; }
+        public int? Total { get; set; }
+
+        /// <summary>
+        /// Кол-во очков, которые ОСТАЛОСЬ набрать
+        /// </summary>
+        public int? Scores { get; set; }
+        
+        /// <summary>
+        /// Номер броска
+        /// </summary>
+        public int NumberThrow { get; set; }
+        
         public int? GameId { get; set; }
         public virtual GameEntity? Game { get; set; }
         public int? UserId { get; set; }
         public virtual UserEntity? User { get; set; }
-
-        public UsersGameEntity()
-        {
-            Throws = new List<ThrowEntity>();
-        }
+        
     }
 }

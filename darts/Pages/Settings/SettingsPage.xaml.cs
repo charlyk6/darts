@@ -85,7 +85,7 @@ namespace darts.Pages.Settings
                 LastName = user.LastName,
                 NickName = user.NickName,
                 UserLevel = user.UserLevel,
-                Score = user.Score,
+                Total = user.Total,
                 IsPlaying = user.IsPlaying
             });
 
@@ -99,7 +99,7 @@ namespace darts.Pages.Settings
                     user.LastName = UserWindow.User.LastName;
                     user.NickName = UserWindow.User.NickName;
                     user.UserLevel = UserWindow.User.UserLevel;
-                    user.Score = UserWindow.User.Score;
+                    user.Total = UserWindow.User.Total;
                     user.IsPlaying = UserWindow.User.IsPlaying;
                     db.SaveChanges();
                     usersList.Items.Refresh();

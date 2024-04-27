@@ -51,10 +51,9 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding NickName}" Width="150">Ник</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Score}" Width="50">Цель</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Level}" Width="70">Уровень</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Points}" Width="70">Остаток</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding LastThrow}" Width="70">Бросок</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Total}" Width="70">Цель</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Level}" Width="100">Уровень</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Scores}" Width="70">Остаток</GridViewColumn>                    
                     <GridViewColumn DisplayMemberBinding="{Binding NumberThrow}" Width="110">Номер броска</GridViewColumn>
                 </GridView>
             </ListView.View>

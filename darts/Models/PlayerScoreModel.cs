@@ -15,7 +15,7 @@ namespace darts.Models
         /// <summary>
         /// Цель игры
         /// </summary>
-        public int? Score { get; set; }
+        public int? Total { get; set; }
         /// <summary>
         /// Уровень сложности
         /// </summary>
@@ -23,11 +23,7 @@ namespace darts.Models
         /// <summary>
         /// Остаток очков
         /// </summary>
-        public int? Points { get; set; }
-        /// <summary>
-        /// Последний бросок
-        /// </summary>
-        public int? LastThrow { get; set; }
+        public int? Scores { get; set; }       
         /// <summary>
         /// Номер броска
         /// </summary>

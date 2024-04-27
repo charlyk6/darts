@@ -18,7 +18,7 @@ namespace darts.Pages
 
         void Accept_Click(object sender, RoutedEventArgs e)
         {
-            if(User.FirstName is null || User.LastName is null || User.NickName is null || User.Score is null)
+            if(User.FirstName is null || User.LastName is null || User.NickName is null || User.Total is null)
             {
                 var msgWindow = new MessageWindow("Заполните все поля");
                 msgWindow.ShowDialog();
