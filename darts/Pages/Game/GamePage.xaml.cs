@@ -179,13 +179,13 @@ namespace darts.Pages.Games
             while (!isGameFinished)
             {
                 var currentPlayer = playerScores[indexCurPlayer];
-                var dlrotiks = new List<Drotik>();
                 
                 //TODO ВЫВЕСТИ на экрани ходит чувак = такой то ...
                 //у чувака есть подход, состоящий из 3-х ходов 
                 for (int i = 0; i < 3; i++)
                 {
-                    isGameFinished = Move(drotiksImages[i]);
+                    var drotik = new Drotik(drotiksImages[i]);
+                    isGameFinished = Move(drotik);
                     if (isGameFinished)
                     {
                         //TODO вывести на экран - игра закончена
@@ -211,7 +211,7 @@ namespace darts.Pages.Games
 
         }
 
-        private bool Move(Image drotikImage)
+        private bool Move(Drotik drotik)
         {
             //TODO куча логики
 
