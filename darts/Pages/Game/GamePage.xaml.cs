@@ -170,7 +170,7 @@ namespace darts.Pages.Games
             initArrowsAnimation();
             var isGameFinished = false;
             var indexCurPlayer = 0;
-            List<Image> drotiks = new List<Image>
+            List<Image> drotiksImages = new List<Image>
             {
                 drotik1,
                 drotik2,
@@ -179,11 +179,13 @@ namespace darts.Pages.Games
             while (!isGameFinished)
             {
                 var currentPlayer = playerScores[indexCurPlayer];
+                var dlrotiks = new List<Drotik>();
+                
                 //TODO ВЫВЕСТИ на экрани ходит чувак = такой то ...
                 //у чувака есть подход, состоящий из 3-х ходов 
                 for (int i = 0; i < 3; i++)
                 {
-                    isGameFinished = Move(drotiks[i]);
+                    isGameFinished = Move(drotiksImages[i]);
                     if (isGameFinished)
                     {
                         //TODO вывести на экран - игра закончена
