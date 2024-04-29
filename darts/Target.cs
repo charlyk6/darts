@@ -1,20 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
 
 namespace darts
 {
-    public class Target
+    public static class Target
     {
-        public Image target = new Image();
-        public int getPoints(int x, int y)
+        public static int GetPoints(Image target, Drotik drotik)
         {
-            y = getY() - y + (int)target.Height / 2;
-            x -= getX();
+            var x = drotik.x;
+            var y = drotik.y;
+            y = GetY(target) - y + (int)target.Height / 2;
+            x -= GetX(target);
             double r = Math.Sqrt(x * x + y * y);
             if (r <= 8)
             {
@@ -44,13 +41,15 @@ namespace darts
             {
                 return 0;
             }
+            drotik.Points = ans;
+
             return ans;
         }
-        public int getX()
+        private static int GetX(Image target)
         {
             return (int)(target.Margin.Left + target.Width / 2);
         }
-        public int getY()
+        private static int GetY(Image target)
         {
             return (int)target.Margin.Top;
         }

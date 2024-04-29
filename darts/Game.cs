@@ -22,10 +22,10 @@ namespace darts
             drotik3 = d3;
             curTry.initDrotiks(drotik1, drotik2, drotik3);
         }
-        public void setTarget(Image target)
-        {
-            curTry.target.target = target;
-        }
+        //public void setTarget(Image target)
+        //{
+        //    curTry.target.target = target;
+        //}
         public void setPower(double power)
         {
             curTry.setPower(power);

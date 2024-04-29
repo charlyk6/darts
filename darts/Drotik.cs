@@ -6,53 +6,48 @@ using System.Windows.Media.Animation;
 namespace darts
 {
     public class Drotik
-    {
-        public Image drotik = new Image();
-        public Throw Throw = new Throw();
-        public Storyboard flyStoryBoard = new Storyboard();
+    { 
+        public Throw Throw = new Throw();        
+        public double x;
+        public double y;
+        
+        private static readonly double rsize = 3;
+        private Image _drotikImage { get; set; }
 
+        public Storyboard flyStoryBoard = new Storyboard();
         public ThicknessAnimationUsingKeyFrames flyAnimation = new ThicknessAnimationUsingKeyFrames();
         public DoubleAnimation flyAnimationWidth = new DoubleAnimation();
         public DoubleAnimation flyAnimationHeight = new DoubleAnimation();
-
         public ThicknessAnimation flyAnimationDelta = new ThicknessAnimation();
-        double rsize = 3;
-        double x;
-        double y;
+        public int Points { get; set; }
 
-        public Drotik(Image dr)
+
+        public Drotik(Image drotikImage)
         {
-            drotik = dr;
+            _drotikImage = drotikImage;
         }
-        public void do_throw(int x, int y0)
+        public void MakeThrow(int x, int y0)
         {
             Throw.init();
-            drotik.Margin = new Thickness(x + drotik.Width / 2 - drotik.Width * rsize / 2, Throw.normalizeY(Throw.f(0), y0), 0, 0);
-            initFlyAnimation(y0);
+            _drotikImage.Margin = new Thickness(x + _drotikImage.Width / 2 - _drotikImage.Width * rsize / 2, Throw.normalizeY(Throw.f(0), y0), 0, 0);
+            InitFlyAnimation(y0);
             beginFlyAnimation();
-            stayVisible();
-            drotik.Margin = new Thickness(x, Throw.normalizeY(Throw.f(Throw.time), y0), 0, 0);
+            StayVisible();
+            _drotikImage.Margin = new Thickness(x, Throw.normalizeY(Throw.f(Throw.time), y0), 0, 0);
             this.x = x;
             this.y = Throw.normalizeY(Throw.f(Throw.time), y0);
         }
-        public int getX()
+        
+        public void StayInvisibe()
         {
-            return (int)x;
+            _drotikImage.Visibility = Visibility.Hidden;
         }
-        public int getY()
+        public void StayVisible()
         {
-            return (int)y;
-        }
-        public void stayInvisibe()
-        {
-            drotik.Visibility = Visibility.Hidden;
-        }
-        public void stayVisible()
-        {
-            drotik.Visibility = Visibility.Visible;
+            _drotikImage.Visibility = Visibility.Visible;
 
         }
-        public void initFlyAnimation(int y0)
+        public void InitFlyAnimation(int y0)
         {
             int timeAnimation = 700;
             int frames = 100;
@@ -61,23 +56,23 @@ namespace darts
 
             for (int i = 0; i < frames; i++)
             {
-                double curWidth = drotik.Width * rsize - (drotik.Width * rsize - drotik.Width) * i / frames;
-                double curx = drotik.Margin.Left + drotik.Width * rsize / 2 - curWidth / 2;
+                double curWidth = _drotikImage.Width * rsize - (_drotikImage.Width * rsize - _drotikImage.Width) * i / frames;
+                double curx = _drotikImage.Margin.Left + _drotikImage.Width * rsize / 2 - curWidth / 2;
                 flyAnimation.KeyFrames.Add(new LinearThicknessKeyFrame(new Thickness(curx, Throw.normalizeY(Throw.f(i * Throw.time / frames),y0), 0, 0)));
             }
             flyAnimation.FillBehavior = FillBehavior.Stop;
 
-            Storyboard.SetTargetName(flyAnimation, drotik.Name);
+            Storyboard.SetTargetName(flyAnimation, _drotikImage.Name);
             Storyboard.SetTargetProperty(flyAnimation, new PropertyPath(Image.MarginProperty));
             
             flyStoryBoard.Children.Add(flyAnimation);
 
             flyAnimationWidth.Duration = TimeSpan.FromMilliseconds(timeAnimation);
-            flyAnimationWidth.From = drotik.Width * rsize;
-            flyAnimationWidth.To = drotik.Width;
+            flyAnimationWidth.From = _drotikImage.Width * rsize;
+            flyAnimationWidth.To = _drotikImage.Width;
             flyAnimationWidth.FillBehavior = FillBehavior.Stop;
 
-            Storyboard.SetTargetName(flyAnimationWidth, drotik.Name);
+            Storyboard.SetTargetName(flyAnimationWidth, _drotikImage.Name);
             Storyboard.SetTargetProperty(flyAnimationWidth, new PropertyPath(Image.WidthProperty));
 
             flyAnimationHeight.Duration = flyAnimationWidth.Duration;
@@ -86,7 +81,7 @@ namespace darts
             flyAnimationHeight.FillBehavior = FillBehavior.Stop;
             
 
-            Storyboard.SetTargetName(flyAnimationHeight, drotik.Name);
+            Storyboard.SetTargetName(flyAnimationHeight, _drotikImage.Name);
             Storyboard.SetTargetProperty(flyAnimationHeight, new PropertyPath(Image.HeightProperty));
 
             flyStoryBoard.Children.Add(flyAnimationWidth);
@@ -96,7 +91,7 @@ namespace darts
         }
         public void beginFlyAnimation()
         {
-            flyStoryBoard.Begin(drotik, true);
+            flyStoryBoard.Begin(_drotikImage, true);
         }
     }
 }

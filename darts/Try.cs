@@ -12,13 +12,12 @@ namespace darts
         public int throwCnt = 0;
         public int points = 0;
         public List<Drotik> drotiks = new List<Drotik>();
-        public Target target = new Target();
         public void initDrotiks(Image dr1, Image dr2, Image dr3)
         {
             drotiks.Clear();
-            drotiks.Add(new Drotik(dr1));
-            drotiks.Add(new Drotik(dr2));
-            drotiks.Add(new Drotik(dr3));
+            //drotiks.Add(new Drotik(dr1));
+            //drotiks.Add(new Drotik(dr2));
+            //drotiks.Add(new Drotik(dr3));
         }
         public void setCorner(double corner)
         {
@@ -27,7 +26,7 @@ namespace darts
                 throwCnt = 0;
                 foreach (Drotik d in drotiks)
                 {
-                    d.stayInvisibe();
+                    d.StayInvisibe();
                 }
             }
             drotiks[throwCnt].Throw.corner = corner;
@@ -39,7 +38,7 @@ namespace darts
                 throwCnt = 0;
                 foreach (Drotik d in drotiks)
                 {
-                    d.stayInvisibe();
+                    d.StayInvisibe();
                 }
             }
             drotiks[throwCnt].Throw.power = power;
@@ -51,12 +50,12 @@ namespace darts
                 throwCnt = 0;
                 foreach (Drotik d in drotiks)
                 {
-                    d.stayInvisibe();
+                    d.StayInvisibe();
                 }
             }
 
-            drotiks[throwCnt].do_throw(x, target.getY());
-            points = target.getPoints((int)(drotiks[throwCnt].getX() + drotiks[throwCnt].drotik.Width/2), (int)(drotiks[throwCnt].getY() + drotiks[throwCnt].drotik.Height/2));
+            //drotiks[throwCnt].do_throw(x, target.getY());
+            //points = target.getPoints((int)(drotiks[throwCnt].getX() + drotiks[throwCnt].drotik.Width/2), (int)(drotiks[throwCnt].getY() + drotiks[throwCnt].drotik.Height/2));
             throwCnt++;
         }
     }

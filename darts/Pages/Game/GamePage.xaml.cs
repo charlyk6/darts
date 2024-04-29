@@ -26,6 +26,11 @@ namespace darts.Pages.Games
         ThicknessAnimation cornerAnimation = new ThicknessAnimation();
         ThicknessAnimation aimAnimation = new ThicknessAnimation();
 
+        public List<Image> drotikImages;
+        public List<Drotik> drotiks;
+        public int indexCurrentDrotik = 0;
+        public int indexCurrentPlayer = 0;
+
 
         Storyboard powerStoryboard = new Storyboard();
         Storyboard cornerStoryboard = new Storyboard();
@@ -42,6 +47,11 @@ namespace darts.Pages.Games
         public GamePage()
         {
             InitializeComponent();
+
+            drotiks = new List<Drotik>
+            {
+                new Drotik(drotik1),new Drotik(drotik2),new Drotik(drotik3)
+            };
             GameLoaded();
 
             DataContext = playerScores;
@@ -138,6 +148,15 @@ namespace darts.Pages.Games
 
         void initArrowsAnimation()
         {
+            aimAnimation.From = aim.Margin;
+            aimAnimation.To = new Thickness(aimScale.Width + aimScale.Margin.Left - aim.Width, aim.Margin.Top, 0, 0);
+            aimAnimation.RepeatBehavior = RepeatBehavior.Forever;
+            aimAnimation.AutoReverse = true;
+            aimAnimation.SpeedRatio = 0.7;
+            Storyboard.SetTargetName(aimAnimation, aim.Name);
+            Storyboard.SetTargetProperty(aimAnimation, new PropertyPath(Image.MarginProperty));
+            aimStoryboard.Children.Add(aimAnimation);
+
             powerAnimation.From = powerArrow.Margin;
             powerAnimation.To = new Thickness(powerGradient.Width + powerGradient.Margin.Left - powerArrow.Width, powerArrow.Margin.Top, 0, 0);
             powerAnimation.RepeatBehavior = RepeatBehavior.Forever;
@@ -153,15 +172,6 @@ namespace darts.Pages.Games
             Storyboard.SetTargetName(cornerAnimation, cornerArrow.Name);
             Storyboard.SetTargetProperty(cornerAnimation, new PropertyPath(Image.MarginProperty));
             cornerStoryboard.Children.Add(cornerAnimation);
-
-            aimAnimation.From = aim.Margin;
-            aimAnimation.To = new Thickness(aimScale.Width + aimScale.Margin.Left - aim.Width, aim.Margin.Top, 0, 0);
-            aimAnimation.RepeatBehavior = RepeatBehavior.Forever;
-            aimAnimation.AutoReverse = true;
-            aimAnimation.SpeedRatio = 0.7;
-            Storyboard.SetTargetName(aimAnimation, aim.Name);
-            Storyboard.SetTargetProperty(aimAnimation, new PropertyPath(Image.MarginProperty));
-            aimStoryboard.Children.Add(aimAnimation);
         }
 
 
@@ -169,55 +179,79 @@ namespace darts.Pages.Games
         {
             initArrowsAnimation();
             var isGameFinished = false;
-            var indexCurPlayer = 0;
-            List<Image> drotiksImages = new List<Image>
-            {
-                drotik1,
-                drotik2,
-                drotik3
-            };
-            while (!isGameFinished)
-            {
-                var currentPlayer = playerScores[indexCurPlayer];
-                
-                //TODO ВЫВЕСТИ на экрани ходит чувак = такой то ...
-                //у чувака есть подход, состоящий из 3-х ходов 
-                for (int i = 0; i < 3; i++)
-                {
-                    var drotik = new Drotik(drotiksImages[i]);
-                    isGameFinished = Move(drotik);
-                    if (isGameFinished)
-                    {
-                        //TODO вывести на экран - игра закончена
-                        break;
-                    }
-
-                }
-
-                indexCurPlayer++;
-                indexCurPlayer %= playerScores.Count;
-            }
-
-            //Необходимо вывести что ходит первый игрок
-            var player1 = users?.FirstOrDefault()?.NickName ?? string.Empty;
-            currentPlayer.Content = player1;
-
+            var indexCurrentPlayer = 0;
+            var player = playerScores[indexCurrentPlayer];
+            currentPlayer.Content = player.NickName;
             aimStoryboard.Begin(aim, true);
 
+            //game = new Game(playerScores);
+            //game.initDrotiks(drotik1, drotik2, drotik3);
+            //game.setTarget(target);
 
-            game = new Game(playerScores);
-            game.initDrotiks(drotik1, drotik2, drotik3);
-            game.setTarget(target);
+            //while (!isGameFinished)
+            //{
+            //    //var currentPlayer = playerScores[indexCurPlayer];
+
+            //    for (int i = 0; i < 3; i++)
+            //    {
+            //        var drotik = new Drotik(drotiksImages[i]);
+            //        isGameFinished = Move(drotik);
+            //        if (isGameFinished)
+            //        {
+            //            //TODO вывести на экран - игра закончена
+            //            break;
+            //        }
+
+
+            //    }
+
+            //    //indexCurPlayer++;
+            //    //indexCurPlayer %= playerScores.Count;
+            //}
 
         }
 
-        private bool Move(Drotik drotik)
+     
+
+        private bool Move()
         {
+            var x = aim.Margin.Left + aim.Width / 2;
+            var y0 = target.Margin.Top;
+            drotiks[indexCurrentDrotik].Throw.corner = (constnats.leftCorner + (cornerArrow.Margin.Left - cornerGradient.Margin.Left) * ((constnats.rightCorner - constnats.leftCorner) / cornerGradient.Width));
+            drotiks[indexCurrentDrotik].Throw.power = constnats.leftPower + (powerArrow.Margin.Left - powerGradient.Margin.Left) * ((constnats.rightPower - constnats.leftPower) / powerGradient.Width);
+
+            drotiks[indexCurrentDrotik].MakeThrow((int)x, (int)y0);
+            var points = Target.GetPoints(target, drotiks[indexCurrentDrotik]);
+            ansLabel.Content = points;
+            playerScores[indexCurrentPlayer].Scores -= points;
+            playerScores[indexCurrentPlayer].NumberThrow++;
+            playersScores.Items.Refresh();
+            //TODO сохранить в БД
+            indexCurrentDrotik++;
+            //TODO разобраться когда делать паузу
+            CheckMove();
+            aimStoryboard.Begin(aim, true);
             //TODO куча логики
 
 
             return false;
         }
+        private void CheckMove()
+        {
+            if (indexCurrentDrotik == 3)
+            {
+                indexCurrentPlayer++;
+                indexCurrentPlayer %= playerScores.Count;
+                indexCurrentDrotik = 0;
+                foreach (var drotik in drotiks)
+                {
+                    drotik.StayInvisibe();
+                }
+                var player = playerScores[indexCurrentPlayer];
+                currentPlayer.Content = player.NickName;
+            }
+        }
+
 
         public void MakeThrow()
         {
@@ -240,15 +274,16 @@ namespace darts.Pages.Games
                 case 1:
                     powerStoryboard.Pause(powerArrow);
                     cornerStoryboard.Begin(cornerArrow, true);
-                    game.setPower(constnats.leftPower + (powerArrow.Margin.Left - powerGradient.Margin.Left) * ((constnats.rightPower - constnats.leftPower) / powerGradient.Width));
+                    //game.setPower(constnats.leftPower + (powerArrow.Margin.Left - powerGradient.Margin.Left) * ((constnats.rightPower - constnats.leftPower) / powerGradient.Width));
                     curScale++;
                     break;
                 case 2:
                     cornerStoryboard.Pause(cornerArrow);
-                    game.setCorner(constnats.leftCorner + (cornerArrow.Margin.Left - cornerGradient.Margin.Left) * ((constnats.rightCorner - constnats.leftCorner) / cornerGradient.Width));
-
-                    MakeThrow();
+                    //game.setCorner(constnats.leftCorner + (cornerArrow.Margin.Left - cornerGradient.Margin.Left) * ((constnats.rightCorner - constnats.leftCorner) / cornerGradient.Width));
                     curScale = 0;
+                    Move();
+                    //MakeThrow();
+                    
 
                     break;
             }

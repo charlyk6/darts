@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Permissions;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace darts
 {
@@ -19,6 +13,11 @@ namespace darts
         {
             time = constants.h / power / Math.Cos(corner);
         }
+        /// <summary>
+        /// функция координаты по Y от времени
+        /// </summary>
+        /// <param name="t">время</param>
+        /// <returns></returns>
         public double f(double t)
         {
             return (Math.Sin(corner) * power * t - constants.g * t * t / 2) / 0.45 * 320;
