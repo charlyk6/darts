@@ -2,6 +2,7 @@
 using darts.db.Entities;
 using darts.Pages.Games;
 using darts.Pages.Settings;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
@@ -16,7 +17,7 @@ namespace darts.Pages
     /// </summary>
     public partial class MainWindow : Window
     {
-        private GamePage game { get; set; }
+        private GamePage gamePage { get; set; }
         private SettingsPage settings { get; set; }
         public MainWindow()
         {
@@ -29,31 +30,47 @@ namespace darts.Pages
         {
             MainFrame.NavigationService.Navigate(settings);
         }
-       
+
         private void GameButton_OnClick(object sender, RoutedEventArgs e)
         {
-            if (!IsValid(out string message))
+            var res = IsValid();
+            if (!res.Result)
             {
-                var msgWindow = new MessageWindow(message);
+                var msgWindow = new MessageWindow(res.Message);
                 msgWindow.ShowDialog();
                 return;
             }
-            if(game == null) game = new GamePage();
-            MainFrame.NavigationService.Navigate(game);
+            //TODO: сделать проверку на наличие игррррр
+            if (gamePage == null) gamePage = new GamePage();
+            MainFrame.NavigationService.Navigate(gamePage);
         }
 
-        private bool IsValid(out string message)
+        private Valid IsValid()
         {
-            message = string.Empty;
+            var message = string.Empty;
             //проверяем есть ли активные игроки (отмечаются на странице настроек)
             var players = settings.getActivePlayers();
-            if (!players.Any()) {
-                message = "Внимание! \n\nНет активных игроков \nНеобходимо изменить настройки";
-                return false;
+            if (!players.Any())
+            {
+                return new Valid()
+                {
+                    Result = false,
+                    Message = "Внимание! \n\nНет активных игроков \nНеобходимо изменить настройки"
+                };
             }
-            
-            return true;
+
+            return new Valid();
         }
+    }
+
+    public struct Valid
+    {
+        public Valid()
+        {
+            
+        }
+        public bool Result { get; set; } = true;
+        public string Message { get; set; } = string.Empty;
     }
 
 }

@@ -87,6 +87,7 @@ namespace darts.Pages.Games
         private void LoadGamesItems(List<GameEntity> games)
         {
             playerScores.Clear();
+            //TODO: пока не знаю как правильно, пока берем просто первую
             var game = games.FirstOrDefault();
             if (game is not null)
             {
@@ -167,6 +168,34 @@ namespace darts.Pages.Games
         public void start()
         {
             initArrowsAnimation();
+            var isGameFinished = false;
+            var indexCurPlayer = 0;
+            List<Image> drotiks = new List<Image>
+            {
+                drotik1,
+                drotik2,
+                drotik3
+            };
+            while (!isGameFinished)
+            {
+                var currentPlayer = playerScores[indexCurPlayer];
+                //TODO ВЫВЕСТИ на экрани ходит чувак = такой то ...
+                //у чувака есть подход, состоящий из 3-х ходов 
+                for (int i = 0; i < 3; i++)
+                {
+                    isGameFinished = Move(drotiks[i]);
+                    if (isGameFinished)
+                    {
+                        //TODO вывести на экран - игра закончена
+                        break;
+                    }
+
+                }
+
+                indexCurPlayer++;
+                indexCurPlayer %= playerScores.Count;
+            }
+
             //Необходимо вывести что ходит первый игрок
             var player1 = users?.FirstOrDefault()?.NickName ?? string.Empty;
             currentPlayer.Content = player1;
@@ -179,6 +208,15 @@ namespace darts.Pages.Games
             game.setTarget(target);
 
         }
+
+        private bool Move(Image drotikImage)
+        {
+            //TODO куча логики
+
+
+            return false;
+        }
+
         public void MakeThrow()
         {
             game.doThrow((int)(aim.Margin.Left + aim.Width / 2 - drotik1.Width / 2));
