@@ -8,8 +8,8 @@ namespace darts
     public class Drotik
     { 
         public Throw Throw = new Throw();        
-        public double x;
-        public double y;
+        public double CenterX;
+        public double CenterY;
         
         private static readonly double rsize = 3;
         private Image _drotikImage { get; set; }
@@ -29,13 +29,14 @@ namespace darts
         public void MakeThrow(int x, int y0)
         {
             Throw.init();
-            _drotikImage.Margin = new Thickness(x + _drotikImage.Width / 2 - _drotikImage.Width * rsize / 2, Throw.normalizeY(Throw.f(0), y0), 0, 0);
+            _drotikImage.Margin = new Thickness(x - _drotikImage.Width * rsize / 2, Throw.normalizeY(Throw.f(0), y0), 0, 0);
             InitFlyAnimation(y0);
             beginFlyAnimation();
             StayVisible();
-            _drotikImage.Margin = new Thickness(x, Throw.normalizeY(Throw.f(Throw.time), y0), 0, 0);
-            this.x = x;
-            this.y = Throw.normalizeY(Throw.f(Throw.time), y0);
+            var y = Throw.normalizeY(Throw.f(Throw.time), y0);
+            _drotikImage.Margin = new Thickness(x - _drotikImage.Width / 2, y, 0, 0);
+            this.CenterX = x;
+            this.CenterY = y + _drotikImage.Height / 2;
         }
         
         public void StayInvisibe()

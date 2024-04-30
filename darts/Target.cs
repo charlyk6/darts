@@ -8,8 +8,8 @@ namespace darts
     {
         public static int GetPoints(Image target, Drotik drotik)
         {
-            var x = drotik.x;
-            var y = drotik.y;
+            var x = drotik.CenterX;
+            var y = drotik.CenterY;
             y = GetY(target) - y + (int)target.Height / 2;
             x -= GetX(target);
             double r = Math.Sqrt(x * x + y * y);

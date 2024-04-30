@@ -117,6 +117,29 @@ namespace darts.Pages.Games
                         NumberThrow = usersGame.NumberThrow
                     });
                 }
+                indexCurrentPlayer = -1;
+                for(int i = 0; i < playerScores.Count; i++)
+                {
+                    if (playerScores[i].NumberThrow % 3 != 0)
+                    {
+                        indexCurrentPlayer = i;
+                        indexCurrentDrotik = playerScores[i].NumberThrow % 3;
+                        break;
+                    }
+                }
+                if(indexCurrentPlayer == -1)
+                {
+                    var minNumberThrow = playerScores.Min(x => x.NumberThrow);
+                    for(int i = 0; i < playerScores.Count; i++)
+                    {
+                        if (playerScores[i].NumberThrow == minNumberThrow)
+                        {
+                            indexCurrentPlayer = i;
+                            indexCurrentDrotik = 0;
+                            break;
+                        }
+                    }
+                }
             }
         }
 
@@ -181,36 +204,9 @@ namespace darts.Pages.Games
         public void start()
         {
             initArrowsAnimation();
-            var indexCurrentPlayer = 0;
             var player = playerScores[indexCurrentPlayer];
             currentPlayer.Content = player.NickName;
             aimStoryboard.Begin(aim, true);
-
-            //game = new Game(playerScores);
-            //game.initDrotiks(drotik1, drotik2, drotik3);
-            //game.setTarget(target);
-
-            //while (!isGameFinished)
-            //{
-            //    //var currentPlayer = playerScores[indexCurPlayer];
-
-            //    for (int i = 0; i < 3; i++)
-            //    {
-            //        var drotik = new Drotik(drotiksImages[i]);
-            //        isGameFinished = Move(drotik);
-            //        if (isGameFinished)
-            //        {
-            //            //TODO вывести на экран - игра закончена
-            //            break;
-            //        }
-
-
-            //    }
-
-            //    //indexCurPlayer++;
-            //    //indexCurPlayer %= playerScores.Count;
-            //}
-
         }
 
 
@@ -246,9 +242,22 @@ namespace darts.Pages.Games
 
             game.IsFinish = true;
             game.Winner = winner;
-            //TODO Отобразить победителя
-
             db.SaveChanges();
+
+            //TODO Отобразить победителя
+            var winnerWindow = new WinnerWindow();
+            winnerWindow.WinnerNameLabel.Content = winner.NickName;
+
+            if (winnerWindow.ShowDialog() == true)
+            {
+                //TODO перейти к странице настроек
+                
+            }
+            else
+            {
+                Environment.Exit(0);
+            }
+
         }
 
         private bool CheckFinishedGame(int points)
@@ -277,6 +286,17 @@ namespace darts.Pages.Games
                         break;
                     case darts.db.Enums.Level.Medium:
                         //если не превысил, то засчитываем бросок
+                        if( scores - points >= 0)
+                        {
+                            scores -= points;
+                            playerScores[indexCurrentPlayer].Scores -= points;
+                            if (scores == 0)
+                            {
+                                result = true;
+                            }
+                        }
+                        usersGame.Scores = scores;
+                        usersGame.NumberThrow++;
 
                         break;
                     case darts.db.Enums.Level.Hard:
