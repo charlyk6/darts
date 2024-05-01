@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:darts.Pages"
         mc:Ignorable="d"
         Title="UserWindow" Height="320" Width="300">
@@ -37,7 +38,11 @@
         <TextBox Text="{Binding FirstName}" Grid.Column="1" Grid.Row="0" FontSize="14"/>
         <TextBox Text="{Binding LastName}" Grid.Column="1" Grid.Row="1" FontSize="14"/>
         <TextBox Text="{Binding NickName}" Grid.Column="1" Grid.Row="2"  FontSize="14"/>
-        <TextBox Text="{Binding UserLevel}" Grid.Column="1" Grid.Row="3"  FontSize="14"/>
+        <ComboBox Text="{Binding UserLevel}" Grid.Column="1" Grid.Row="3"  FontSize="14">
+            <sys:String>Easy</sys:String>
+            <sys:String>Medium</sys:String>
+            <sys:String>Hard</sys:String>
+        </ComboBox>
         <TextBox Text="{Binding Total}" Grid.Column="1" Grid.Row="4"  FontSize="14"/>
 
         <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="5" Grid.Column="1">
