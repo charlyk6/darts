@@ -12,6 +12,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using System.Windows.Media.Imaging;
 
 namespace darts.Pages.Games
 {
@@ -226,12 +227,37 @@ namespace darts.Pages.Games
             drotiks[indexCurrentDrotik].flyStoryBoard.Completed += FinishAnimation;
 
             drotiks[indexCurrentDrotik].MakeThrow((int)x, (int)y0);
-
+            switch (indexCurrentDrotik)
+            {
+                case 0:
+                    BitmapImage bI = new BitmapImage();
+                    bI.BeginInit();
+                    bI.UriSource = new Uri("/Resources/2drotiks.png", UriKind.Relative);
+                    bI.EndInit();
+                    remainingDrotiks.Source = bI;
+                    break;
+                case 1:
+                    bI = new BitmapImage();
+                    bI.BeginInit();
+                    bI.UriSource = new Uri("/Resources/1drotik.png", UriKind.Relative);
+                    bI.EndInit();
+                    remainingDrotiks.Source = bI;
+                    break;
+                case 2:
+                    remainingDrotiks.Source = null;
+                    break;
+            }
 
         }
 
         private void FinishAnimation(object? sender, EventArgs e)
         {
+            aimStoryboard.Stop(aim);
+            powerStoryboard.Stop(powerArrow);
+            cornerStoryboard.Stop(cornerArrow);
+            //сброс анимаций
+
+
             var points = Target.GetPoints(target, drotiks[indexCurrentDrotik]);
             ansLabel.Content = points;
             isFinished = CheckFinishedGame(points);
@@ -244,9 +270,7 @@ namespace darts.Pages.Games
             //TODO разобраться когда делать паузу
             CheckMove();
             
-            aimStoryboard.Stop(aim);
-            powerStoryboard.Stop(powerArrow);
-            cornerStoryboard.Stop(cornerArrow);
+            
 
 
             aimStoryboard.Begin(aim, true);
@@ -347,6 +371,11 @@ namespace darts.Pages.Games
                 }
                 var player = playerScores[indexCurrentPlayer];
                 currentPlayer.Content = player.NickName;
+                BitmapImage bI = new BitmapImage();
+                bI.BeginInit();
+                bI.UriSource = new Uri("/Resources/3drotiks.png", UriKind.Relative);
+                bI.EndInit();
+                remainingDrotiks.Source = bI;
             }
         }
 
