@@ -258,9 +258,9 @@ namespace darts.Pages.Games
             //сброс анимаций
 
 
-            var points = Target.GetPoints(target, drotiks[indexCurrentDrotik]);
-            ansLabel.Content = points;
-            isFinished = CheckFinishedGame(points);
+            var throwResult = Target.GetPoints(target, drotiks[indexCurrentDrotik]);
+            ansLabel.Content = throwResult.points;
+            isFinished = CheckFinishedGame(throwResult);
             if (isFinished)
             {
                 Finish();
@@ -304,7 +304,7 @@ namespace darts.Pages.Games
 
         }
 
-        private bool CheckFinishedGame(int points)
+        private bool CheckFinishedGame(ThrowResult throwResult)
         {
             var result = false;
             var userId = playerScores[indexCurrentPlayer].UserId;
@@ -318,10 +318,10 @@ namespace darts.Pages.Games
                 {
                     case darts.db.Enums.Level.Easy:
                         //в любом случае засчитываем бросок
-                        scores -= points;
+                        scores -= throwResult.points;
                         usersGame.Scores = scores;
                         usersGame.NumberThrow++;
-                        playerScores[indexCurrentPlayer].Scores -= points;
+                        playerScores[indexCurrentPlayer].Scores -= throwResult.points;
                         if (scores <= 0)
                         {
                             result = true;
@@ -330,10 +330,10 @@ namespace darts.Pages.Games
                         break;
                     case darts.db.Enums.Level.Medium:
                         //если не превысил, то засчитываем бросок
-                        if( scores - points >= 0)
+                        if( scores - throwResult.points >= 0)
                         {
-                            scores -= points;
-                            playerScores[indexCurrentPlayer].Scores -= points;
+                            scores -= throwResult.points;
+                            playerScores[indexCurrentPlayer].Scores -= throwResult.points;
                             if (scores == 0)
                             {
                                 result = true;
