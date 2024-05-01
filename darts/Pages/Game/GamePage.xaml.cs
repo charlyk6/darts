@@ -337,6 +337,8 @@ namespace darts.Pages.Games
                             if (scores == 0)
                             {
                                 result = true;
+
+
                             }
                         }
                         usersGame.Scores = scores;
@@ -345,6 +347,19 @@ namespace darts.Pages.Games
                         break;
                     case darts.db.Enums.Level.Hard:
                         //проверяем на превышение и окончание игры должно быть через удвоение
+                        if (scores - throwResult.points > 1)
+                        {
+                            scores -= throwResult.points;
+                            playerScores[indexCurrentPlayer].Scores -= throwResult.points;
+                        }
+                        else if (scores - throwResult.points == 0 && throwResult.mult == 2)
+                        {
+                            scores -= throwResult.points;
+                            playerScores[indexCurrentPlayer].Scores -= throwResult.points;
+                            result = true;
+                        }
+                        usersGame.Scores = scores;
+                        usersGame.NumberThrow++;
 
                         break;
                     default:

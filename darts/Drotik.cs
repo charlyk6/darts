@@ -55,7 +55,7 @@ namespace darts
             flyAnimation.Duration = TimeSpan.FromMilliseconds(timeAnimation);
             flyAnimation.KeyFrames.Clear();
 
-            for (int i = 0; i < frames; i++)
+            for (int i = 0; i <= frames; i++)
             {
                 double curWidth = _drotikImage.Width * rsize - (_drotikImage.Width * rsize - _drotikImage.Width) * i / frames;
                 double curx = _drotikImage.Margin.Left + _drotikImage.Width * rsize / 2 - curWidth / 2;

@@ -18,11 +18,13 @@ namespace darts
             if (r <= 8)
             {
                 throwResult.points = 50;
+                throwResult.mult = 2;
                 return throwResult;
             }
             if (r <= 15)
             {
                 throwResult.points = 25;
+                throwResult.mult = 1;
                 return throwResult;
             }
             List<int> sectors = new List<int> { 6, 13, 13, 4, 4, 18, 18, 1, 1, 20, 20, 5, 5, 12, 12, 9, 9, 14, 14, 11, 11, 8, 8, 16, 16, 7, 7, 19, 19, 3, 3, 17, 17, 2, 2, 15, 15, 10, 10, 6 };
