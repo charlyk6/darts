@@ -225,7 +225,7 @@ namespace darts.Pages.Games
             drotiks[indexCurrentDrotik].Throw.power = constnats.leftPower + (powerArrow.Margin.Left - powerGradient.Margin.Left) * ((constnats.rightPower - constnats.leftPower) / powerGradient.Width);
 
             drotiks[indexCurrentDrotik].flyStoryBoard.Completed += FinishAnimation;
-
+            StopButton.IsEnabled = false;
             drotiks[indexCurrentDrotik].MakeThrow((int)x, (int)y0);
             switch (indexCurrentDrotik)
             {
@@ -277,6 +277,7 @@ namespace darts.Pages.Games
             //TODO куча логики
             drotiks[indexCurrentDrotik].flyStoryBoard.Completed -= FinishAnimation;
 
+            StopButton.IsEnabled = true;
         }
 
         private void Finish()
