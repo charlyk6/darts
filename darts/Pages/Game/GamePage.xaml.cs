@@ -185,7 +185,7 @@ namespace darts.Pages.Games
             Storyboard.SetTargetProperty(aimAnimation, new PropertyPath(Image.MarginProperty));
             aimStoryboard.Children.Add(aimAnimation);
 
-            powerAnimation.From = powerGradient.Margin;
+            powerAnimation.From = new Thickness(powerGradient.Margin.Left, powerGradient.Margin.Top, 0, 0);
             powerAnimation.To = new Thickness(powerGradient.Width + powerGradient.Margin.Left - powerArrow.Width, powerArrow.Margin.Top, 0, 0);
             powerAnimation.RepeatBehavior = RepeatBehavior.Forever;
             powerAnimation.AutoReverse = true;
@@ -243,8 +243,11 @@ namespace darts.Pages.Games
             indexCurrentDrotik++;
             //TODO разобраться когда делать паузу
             CheckMove();
-            //aim.Margin = aimScale.Margin;
-            powerArrow.Margin = powerGradient.Margin;
+            
+            aimStoryboard.Stop(aim);
+            powerStoryboard.Stop(powerArrow);
+            cornerStoryboard.Stop(cornerArrow);
+
 
             aimStoryboard.Begin(aim, true);
             //TODO куча логики
