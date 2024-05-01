@@ -88,8 +88,8 @@ namespace darts
             flyStoryBoard.Children.Add(flyAnimationWidth);
             flyStoryBoard.Children.Add(flyAnimationHeight);
 
-
         }
+
         public void beginFlyAnimation()
         {
             flyStoryBoard.Begin(_drotikImage, true);

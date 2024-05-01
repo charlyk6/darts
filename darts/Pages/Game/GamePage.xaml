@@ -22,9 +22,9 @@
         <Image x:Name="drotik2" HorizontalAlignment="Left" Margin="600,100,0,0" Height="20" Width="20" VerticalAlignment="Top" Source="/Resources/drotik_textura.png" Visibility="Hidden"/>
         <Image x:Name="drotik3" HorizontalAlignment="Left" Margin="600,110,0,0" Height="20" Width="20" VerticalAlignment="Top" Source="/Resources/drotik_textura.png" Visibility="Hidden"/>
 
-        <Label x:Name="currentPlayer" Content="currentPlayer" HorizontalAlignment="Left" Height="49" Margin="200,150,0,0" VerticalAlignment="Top" Width="136" Foreground="White" FontSize="35"/>
-        <Label x:Name="lastThrow" Content="бросок:" HorizontalAlignment="Left" Height="49" Margin="200,200,0,0" VerticalAlignment="Top" Width="136" Foreground="White" FontSize="22"/>
-        <Label x:Name="ansLabel" Content="ansLabel" HorizontalAlignment="Left" Height="85" Margin="210,250,0,0" VerticalAlignment="Top" Width="195" Foreground="White" FontSize="40"/>
+        <Label x:Name="currentPlayer" Content="" HorizontalAlignment="Left" Height="49" Margin="200,150,0,0" VerticalAlignment="Top" Width="247" Foreground="White" FontSize="35"/>
+        <Label x:Name="lastThrow" Content="Результат броска:" HorizontalAlignment="Left" Height="49" Margin="200,221,0,0" VerticalAlignment="Top" Width="205" Foreground="White" FontSize="22"/>
+        <Label x:Name="ansLabel" Content="" HorizontalAlignment="Left" Height="85" Margin="210,270,0,0" VerticalAlignment="Top" Width="195" Foreground="White" FontSize="40"/>
 
         <Label x:Name="cornerInfo" Content="угол:" HorizontalAlignment="Left" Height="49" Margin="563,582,0,0" VerticalAlignment="Top" Width="136" Foreground="White" FontSize="30"/>
         <Label x:Name="powerInfo" Content="сила:" HorizontalAlignment="Left" Height="49" Margin="563,514,0,0" VerticalAlignment="Top" Width="136" Foreground="White" FontSize="30"/>
@@ -32,7 +32,7 @@
 
         <Image x:Name="aimScale" HorizontalAlignment="Left" Height="49" Margin="704,446,0,0" VerticalAlignment="Top" Width="350" Source="/Pages/Game/aim.png"/>
         <Image x:Name ="aim" HorizontalAlignment="Left" Height="49" Margin="704,446,0,0" VerticalAlignment="Top" Width="14" Source="/Resources/strelka.png"/>
-        <Button Content="Стоп" HorizontalAlignment="Left" Height="138" Margin="1127,470,0,0" VerticalAlignment="Top" Width="138" FontSize="20" PreviewMouseLeftButtonDown="stopClick" Background="#FFFF0B0B" Foreground="White">
+        <Button x:Name ="StopButton" Content="Стоп" HorizontalAlignment="Left" Height="138" Margin="1127,470,0,0" VerticalAlignment="Top" Width="138" FontSize="20" PreviewMouseLeftButtonDown="stopClick" Background="#FFFF0B0B" Foreground="White">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Template">
@@ -53,10 +53,11 @@
                     <GridViewColumn DisplayMemberBinding="{Binding NickName}" Width="150">Ник</GridViewColumn>
                     <GridViewColumn DisplayMemberBinding="{Binding Total}" Width="70">Цель</GridViewColumn>
                     <GridViewColumn DisplayMemberBinding="{Binding Level}" Width="100">Уровень</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Scores}" Width="70">Остаток</GridViewColumn>                    
+                    <GridViewColumn DisplayMemberBinding="{Binding Scores}" Width="70">Остаток</GridViewColumn>
                     <GridViewColumn DisplayMemberBinding="{Binding NumberThrow}" Width="110">Номер броска</GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
+        <Label x:Name="lastThrow_Копировать" Content="Бросает:" HorizontalAlignment="Left" Height="49" Margin="200,110,0,0" VerticalAlignment="Top" Width="205" Foreground="White" FontSize="22"/>
     </Grid>
 </Page>

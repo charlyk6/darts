@@ -179,22 +179,27 @@ namespace darts.Pages.Games
             aimAnimation.RepeatBehavior = RepeatBehavior.Forever;
             aimAnimation.AutoReverse = true;
             aimAnimation.SpeedRatio = 0.7;
+            aimAnimation.FillBehavior = FillBehavior.Stop;
+
             Storyboard.SetTargetName(aimAnimation, aim.Name);
             Storyboard.SetTargetProperty(aimAnimation, new PropertyPath(Image.MarginProperty));
             aimStoryboard.Children.Add(aimAnimation);
 
-            powerAnimation.From = powerArrow.Margin;
+            powerAnimation.From = powerGradient.Margin;
             powerAnimation.To = new Thickness(powerGradient.Width + powerGradient.Margin.Left - powerArrow.Width, powerArrow.Margin.Top, 0, 0);
             powerAnimation.RepeatBehavior = RepeatBehavior.Forever;
             powerAnimation.AutoReverse = true;
+            powerAnimation.FillBehavior = FillBehavior.Stop;
+
             Storyboard.SetTargetName(powerAnimation, powerArrow.Name);
             Storyboard.SetTargetProperty(powerAnimation, new PropertyPath(Image.MarginProperty));
             powerStoryboard.Children.Add(powerAnimation);
 
-            cornerAnimation.From = cornerArrow.Margin;
+            cornerAnimation.From = cornerGradient.Margin;
             cornerAnimation.To = new Thickness(cornerGradient.Width + cornerGradient.Margin.Left - cornerArrow.Width, cornerArrow.Margin.Top, 0, 0);
             cornerAnimation.RepeatBehavior = RepeatBehavior.Forever;
             cornerAnimation.AutoReverse = true;
+            cornerAnimation.FillBehavior = FillBehavior.Stop;
             Storyboard.SetTargetName(cornerAnimation, cornerArrow.Name);
             Storyboard.SetTargetProperty(cornerAnimation, new PropertyPath(Image.MarginProperty));
             cornerStoryboard.Children.Add(cornerAnimation);
@@ -218,7 +223,15 @@ namespace darts.Pages.Games
             drotiks[indexCurrentDrotik].Throw.corner = (constnats.leftCorner + (cornerArrow.Margin.Left - cornerGradient.Margin.Left) * ((constnats.rightCorner - constnats.leftCorner) / cornerGradient.Width));
             drotiks[indexCurrentDrotik].Throw.power = constnats.leftPower + (powerArrow.Margin.Left - powerGradient.Margin.Left) * ((constnats.rightPower - constnats.leftPower) / powerGradient.Width);
 
+            drotiks[indexCurrentDrotik].flyStoryBoard.Completed += FinishAnimation;
+
             drotiks[indexCurrentDrotik].MakeThrow((int)x, (int)y0);
+
+
+        }
+
+        private void FinishAnimation(object? sender, EventArgs e)
+        {
             var points = Target.GetPoints(target, drotiks[indexCurrentDrotik]);
             ansLabel.Content = points;
             isFinished = CheckFinishedGame(points);
@@ -230,8 +243,12 @@ namespace darts.Pages.Games
             indexCurrentDrotik++;
             //TODO разобраться когда делать паузу
             CheckMove();
+            //aim.Margin = aimScale.Margin;
+            powerArrow.Margin = powerGradient.Margin;
+
             aimStoryboard.Begin(aim, true);
             //TODO куча логики
+            drotiks[indexCurrentDrotik].flyStoryBoard.Completed -= FinishAnimation;
 
         }
 
