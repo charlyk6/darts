@@ -22,7 +22,7 @@
         <Image x:Name="drotik2" HorizontalAlignment="Left" Margin="600,100,0,0" Height="20" Width="20" VerticalAlignment="Top" Source="/Resources/drotik_textura.png" Visibility="Hidden"/>
         <Image x:Name="drotik3" HorizontalAlignment="Left" Margin="600,110,0,0" Height="20" Width="20" VerticalAlignment="Top" Source="/Resources/drotik_textura.png" Visibility="Hidden"/>
 
-        <Label x:Name="currentPlayer" Content="" HorizontalAlignment="Left" Height="49" Margin="106,150,0,0" VerticalAlignment="Top" Width="247" Foreground="White" FontSize="35"/>
+        <Label x:Name="currentPlayer" Content="" HorizontalAlignment="Left" Height="66" Margin="106,150,0,0" VerticalAlignment="Top" Width="247" Foreground="White" FontSize="35"/>
         <Label x:Name="lastThrow" Content="Результат броска:" HorizontalAlignment="Left" Height="49" Margin="106,221,0,0" VerticalAlignment="Top" Width="205" Foreground="White" FontSize="22"/>
         <Label x:Name="ansLabel" Content="" HorizontalAlignment="Left" Height="85" Margin="116,270,0,0" VerticalAlignment="Top" Width="195" Foreground="White" FontSize="40"/>
 

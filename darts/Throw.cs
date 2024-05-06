@@ -11,7 +11,7 @@ namespace darts
         
         public void init()
         {
-            time = constants.h / power / Math.Cos(corner);
+            time = constants.S / power / Math.Cos(corner);
         }
         /// <summary>
         /// функция координаты по Y от времени

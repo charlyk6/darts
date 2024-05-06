@@ -17,24 +17,12 @@
                 <StackPanel Orientation="Horizontal" Width="180">
                     <Image></Image>
                     <Button Name="Settings" Width="180" Click="SettingsButton_OnClick" Margin="2" FontSize="16">
-                        <Button.Background>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="Black"/>
-                                <GradientStop Color="#FF42F31E" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Button.Background>
                         Настройки
                     </Button>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Width="180">
 
                     <Button Name="Game" Width="180" Click="GameButton_OnClick" Margin="2" FontSize="16">
-                        <Button.Background>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="Black"/>
-                                <GradientStop Color="#FF42F31E" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Button.Background>
                         Игра
                     </Button>
                 </StackPanel>

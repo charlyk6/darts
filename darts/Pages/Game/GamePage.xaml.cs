@@ -423,15 +423,6 @@ namespace darts.Pages.Games
         }
 
 
-        //public void MakeThrow()
-        //{
-        //    game.doThrow((int)(aim.Margin.Left + aim.Width / 2 - drotik1.Width / 2));
-        //    aimStoryboard.Resume(aim);
-        //    //Нужно перенести в другое место, чтобы выводит чей бросок
-        //    ansLabel.Content = game.curTry.points;
-        //    playersScores.Items.Refresh();
-
-        //}
         public void stopClick(object sender, RoutedEventArgs e)
         {
             switch (curScale)
@@ -459,9 +450,5 @@ namespace darts.Pages.Games
             }
         }
 
-        private void FinishGameClick(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }
