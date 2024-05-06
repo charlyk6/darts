@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="WinnerWindow" Height="320" Width="300">
     <Grid>
-        <Button Content="Новая игра" HorizontalAlignment="Left" Height="32" Margin="45,246,0,0" VerticalAlignment="Top" Width="89" Click="NewGameButtonClick" Visibility="Hidden"/>
+        <Button Content="Новая игра" HorizontalAlignment="Left" Height="32" Margin="45,246,0,0" VerticalAlignment="Top" Width="89" Click="NewGameButtonClick"/>
         <Button Content="Выход" HorizontalAlignment="Left" Height="32" Margin="178,246,0,0" VerticalAlignment="Top" Width="89" Click="ExitButtonClick"/>
         <Label Content="Победил игрок" HorizontalAlignment="Left" Height="30" Margin="65,47,0,0" VerticalAlignment="Top" Width="157"/>
         <Label x:Name = "WinnerNameLabel" Content="" HorizontalAlignment="Left" Height="40" Margin="65,82,0,0" VerticalAlignment="Top" Width="157" FontSize="20"/>

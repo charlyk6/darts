@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:darts.Pages.Games"
       mc:Ignorable="d"
-      Title="darts" Width="1350" Height="750">
+      Title="darts" Width="1350" Height="800">
     <Page.Background>
         <ImageBrush ImageSource="/Resources/fon.jpg" Stretch="Fill" />
     </Page.Background>

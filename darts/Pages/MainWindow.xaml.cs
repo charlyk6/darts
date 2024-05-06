@@ -41,7 +41,7 @@ namespace darts.Pages
                 return;
             }
             //TODO: сделать проверку на наличие игррррр
-            if (gamePage == null) gamePage = new GamePage();
+            gamePage = new GamePage();
             MainFrame.NavigationService.Navigate(gamePage);
         }
 

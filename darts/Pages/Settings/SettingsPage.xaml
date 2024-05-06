@@ -46,7 +46,7 @@
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button Content="Добавить" Margin="10" Click="Add_Click" />
             <Button Content="Изменить" Margin="10" Click="Edit_Click"  />
-            <Button Content="Удалить" Margin="10" Click="Delete_Click"  />
+            <Button Content="Удалить" Margin="10" Click="Delete_Click" Visibility="Hidden"/>
         </StackPanel>
 
     </Grid>

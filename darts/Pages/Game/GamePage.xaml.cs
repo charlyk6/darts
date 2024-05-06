@@ -2,10 +2,12 @@
 using darts.db.Entities;
 using darts.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -71,7 +73,16 @@ namespace darts.Pages.Games
             }
             else
             {
-                LoadGamesItems(activeGames);
+                var modal = new NewGameModalWindow();
+                if (modal.ShowDialog() == true)
+                {
+                    game = CreateNewGame();
+                    InitPlayers(game);
+                }
+                else
+                {
+                    LoadGamesItems(activeGames);
+                }
             }
         }
 
@@ -101,8 +112,10 @@ namespace darts.Pages.Games
         private void LoadGamesItems(List<GameEntity> games)
         {
             playerScores.Clear();
-            //TODO: пока не знаю как правильно, пока берем просто первую
-            game = games.FirstOrDefault();
+            games.OrderBy(x => x.Date);
+            game = games[games.Count - 1];
+            //берем последнюю по дате
+
             if (game is not null)
             {
                 var usersGames = game.UsersGames.ToList();
@@ -179,7 +192,7 @@ namespace darts.Pages.Games
             aimAnimation.To = new Thickness(aimScale.Width + aimScale.Margin.Left - aim.Width, aim.Margin.Top, 0, 0);
             aimAnimation.RepeatBehavior = RepeatBehavior.Forever;
             aimAnimation.AutoReverse = true;
-            aimAnimation.SpeedRatio = 0.7;
+            aimAnimation.SpeedRatio = 0.5;
             aimAnimation.FillBehavior = FillBehavior.Stop;
 
             Storyboard.SetTargetName(aimAnimation, aim.Name);
@@ -210,13 +223,31 @@ namespace darts.Pages.Games
         public void start()
         {
             initArrowsAnimation();
+            loadDrotiksImage();
             var player = playerScores[indexCurrentPlayer];
             currentPlayer.Content = player.NickName;
             aimStoryboard.Begin(aim, true);
         }
+        private void loadDrotiksImage()
+        {
+            var bI = new BitmapImage();
+            bI.BeginInit();
 
-
-
+            switch (indexCurrentDrotik)
+            {
+                case 0:
+                    bI.UriSource = new Uri("/Resources/3drotiks.png", UriKind.Relative);
+                    break;
+                case 1:
+                    bI.UriSource = new Uri("/Resources/2drotiks.png", UriKind.Relative);
+                    break;
+                case 2:
+                    bI.UriSource = new Uri("/Resources/1drotik.png", UriKind.Relative);
+                    break;
+            }
+            bI.EndInit();
+            remainingDrotiks.Source = bI;
+        }
         private void Move()
         {
             var x = aim.Margin.Left + aim.Width / 2;
@@ -227,17 +258,16 @@ namespace darts.Pages.Games
             drotiks[indexCurrentDrotik].flyStoryBoard.Completed += FinishAnimation;
             StopButton.IsEnabled = false;
             drotiks[indexCurrentDrotik].MakeThrow((int)x, (int)y0);
+            BitmapImage bI = new BitmapImage();
             switch (indexCurrentDrotik)
             {
                 case 0:
-                    BitmapImage bI = new BitmapImage();
                     bI.BeginInit();
                     bI.UriSource = new Uri("/Resources/2drotiks.png", UriKind.Relative);
                     bI.EndInit();
                     remainingDrotiks.Source = bI;
                     break;
                 case 1:
-                    bI = new BitmapImage();
                     bI.BeginInit();
                     bI.UriSource = new Uri("/Resources/1drotik.png", UriKind.Relative);
                     bI.EndInit();
@@ -269,12 +299,8 @@ namespace darts.Pages.Games
             indexCurrentDrotik++;
             //TODO разобраться когда делать паузу
             CheckMove();
-            
-            
-
 
             aimStoryboard.Begin(aim, true);
-            //TODO куча логики
             drotiks[indexCurrentDrotik].flyStoryBoard.Completed -= FinishAnimation;
 
             StopButton.IsEnabled = true;
@@ -296,7 +322,7 @@ namespace darts.Pages.Games
             if (winnerWindow.ShowDialog() == true)
             {
                 //TODO перейти к странице настроек
-                
+                this.NavigationService.GoBack();
             }
             else
             {
@@ -378,6 +404,7 @@ namespace darts.Pages.Games
         {
             if (indexCurrentDrotik == 3)
             {
+                Thread.Sleep(1000);
                 indexCurrentPlayer++;
                 indexCurrentPlayer %= playerScores.Count;
                 indexCurrentDrotik = 0;
@@ -432,6 +459,9 @@ namespace darts.Pages.Games
             }
         }
 
+        private void FinishGameClick(object sender, RoutedEventArgs e)
+        {
 
+        }
     }
 }

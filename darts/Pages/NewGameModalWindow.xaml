@@ -1,0 +1,16 @@
+﻿<Window x:Class="darts.Pages.NewGameModalWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:darts.Pages"
+        mc:Ignorable="d"
+        Title="NewGameModalWindow" Height="200" Width="320">
+    <Grid Margin="0,0,0,-6">
+        <Label Content="У вас уже есть незавершенная игра" HorizontalAlignment="Center" Height="34" Margin="0,10,0,0" VerticalAlignment="Top" Width="242" FontSize="14"/>
+        <Label Content="Хотите продолжить или начать заново?" HorizontalAlignment="Center" Height="37" Margin="0,49,0,0" VerticalAlignment="Top" Width="269" FontSize="14"/>
+        <Button Content="Заново" HorizontalAlignment="Left" Height="28" Margin="39,119,0,0" VerticalAlignment="Top" Width="100" FontSize="14" Click="NewGameСlick"/>
+        <Button Content="Продолжить" HorizontalAlignment="Left" Height="28" Margin="181,119,0,0" VerticalAlignment="Top" Width="100" FontSize="14" Click="ContinueСlick"/>
+
+    </Grid>
+</Window>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:darts.Pages"
         mc:Ignorable="d"       
-        Title="darts" Height="800" Width="1550"
+        Title="darts" Height="800" Width="1550" 
         WindowStartupLocation="CenterScreen"        >
     <Grid>
         <Grid.ColumnDefinitions>
