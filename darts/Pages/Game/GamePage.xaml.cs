@@ -53,7 +53,7 @@ namespace darts.Pages.Games
 
             drotiks = new List<Drotik>
             {
-                new Drotik(drotik1),new Drotik(drotik2),new Drotik(drotik3)
+                new Drotik(drotik1, fallDrotik),new Drotik(drotik2, fallDrotik),new Drotik(drotik3, fallDrotik)
             };
             GameLoaded();
 
@@ -287,7 +287,22 @@ namespace darts.Pages.Games
             cornerStoryboard.Stop(cornerArrow);
             //сброс анимаций
 
-
+            var inTarget = Target.IsInTarget(target, drotiks[indexCurrentDrotik]);
+            if (inTarget)
+            {
+                FinishDropAnimation(sender, e);
+            }
+            else
+            {
+                drotiks[indexCurrentDrotik].InitDropAnimation();
+                drotiks[indexCurrentDrotik].dropStoryBoard.Completed += FinishDropAnimation;
+                drotiks[indexCurrentDrotik].beginDropAnimation();
+                drotiks[indexCurrentDrotik].StayInvisibe();
+            }
+            
+        }
+        private void FinishDropAnimation(object? sender, EventArgs e)
+        {
             var throwResult = Target.GetPoints(target, drotiks[indexCurrentDrotik]);
             ansLabel.Content = throwResult.points;
             isFinished = CheckFinishedGame(throwResult);
@@ -302,10 +317,10 @@ namespace darts.Pages.Games
 
             aimStoryboard.Begin(aim, true);
             drotiks[indexCurrentDrotik].flyStoryBoard.Completed -= FinishAnimation;
+            drotiks[indexCurrentDrotik].dropStoryBoard.Completed -= FinishDropAnimation;
 
             StopButton.IsEnabled = true;
         }
-
         private void Finish()
         {
             var userId = playerScores[indexCurrentPlayer].UserId;

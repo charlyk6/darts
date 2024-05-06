@@ -13,8 +13,13 @@ namespace darts
         
         private static readonly double rsize = 3;
         private Image _drotikImage { get; set; }
+        private Image _fallDrotikImage { get; set; }
+
 
         public Storyboard flyStoryBoard = new Storyboard();
+        public Storyboard dropStoryBoard = new Storyboard();
+
+        public ThicknessAnimation dropAnimation = new ThicknessAnimation();
         public ThicknessAnimationUsingKeyFrames flyAnimation = new ThicknessAnimationUsingKeyFrames();
         public DoubleAnimation flyAnimationWidth = new DoubleAnimation();
         public DoubleAnimation flyAnimationHeight = new DoubleAnimation();
@@ -22,9 +27,10 @@ namespace darts
         public int Points { get; set; }
 
 
-        public Drotik(Image drotikImage)
+        public Drotik(Image drotikImage, Image fallDrotikImage)
         {
             _drotikImage = drotikImage;
+            _fallDrotikImage = fallDrotikImage;
         }
         public void MakeThrow(int x, int y0)
         {
@@ -89,7 +95,23 @@ namespace darts
             flyStoryBoard.Children.Add(flyAnimationHeight);
 
         }
+        public void InitDropAnimation()
+        {
+            dropAnimation.Duration = TimeSpan.FromMilliseconds(1500);
+            dropAnimation.From = _drotikImage.Margin;
+            dropAnimation.To = new Thickness(_drotikImage.Margin.Left, _drotikImage.Margin.Top+1000, 0, 0);
+            dropAnimation.FillBehavior = FillBehavior.Stop;
 
+
+            Storyboard.SetTargetName(dropAnimation, _fallDrotikImage.Name);
+            Storyboard.SetTargetProperty(dropAnimation, new PropertyPath(Image.MarginProperty));
+
+            dropStoryBoard.Children.Add(dropAnimation);
+        }
+        public void beginDropAnimation()
+        {
+            dropStoryBoard.Begin(_fallDrotikImage, true);
+        }
         public void beginFlyAnimation()
         {
             flyStoryBoard.Begin(_drotikImage, true);

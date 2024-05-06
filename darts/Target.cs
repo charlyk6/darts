@@ -6,6 +6,19 @@ namespace darts
 {
     public static class Target
     {
+        public static bool IsInTarget(Image target, Drotik drotik)
+        {
+            var x = drotik.CenterX;
+            var y = drotik.CenterY;
+            y = GetY(target) - y + (int)target.Height / 2;
+            x -= GetX(target);
+            double r = Math.Sqrt(x * x + y * y);
+            if (r > 175)
+            {
+                return false;
+            }
+            return true;
+        }
         public static ThrowResult GetPoints(Image target, Drotik drotik)
         {
             var x = drotik.CenterX;
