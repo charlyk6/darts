@@ -7,7 +7,7 @@
       mc:Ignorable="d"
       Title="darts" Width="1350" Height="800">
     <Page.Background>
-        <ImageBrush ImageSource="/Resources/fon2.png" Stretch="Fill" />
+        <ImageBrush ImageSource="D:\Projects\darts\darts\Resources\fon2.png" Stretch="Fill" />
     </Page.Background>
     <Grid>
         <Image x:Name="target" HorizontalAlignment="Left" Height="350" Margin="704,30,0,0" VerticalAlignment="Top" Width="350" Source="/Resources/target2.png"/>
