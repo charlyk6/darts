@@ -7,7 +7,7 @@
       mc:Ignorable="d"
       Title="darts" Width="1350" Height="800">
     <Page.Background>
-        <ImageBrush ImageSource="/Resources/fon.jpg" Stretch="Fill" />
+        <ImageBrush ImageSource="/Resources/fon2.png" Stretch="Fill" />
     </Page.Background>
     <Grid>
         <Image x:Name="target" HorizontalAlignment="Left" Height="350" Margin="704,30,0,0" VerticalAlignment="Top" Width="350" Source="/Resources/target2.png"/>
@@ -59,6 +59,6 @@
             </ListView.View>
         </ListView>
         <Label Content="Бросает:" HorizontalAlignment="Left" Height="49" Margin="106,110,0,0" VerticalAlignment="Top" Width="205" Foreground="White" FontSize="22"/>
-        <Image x:Name="remainingDrotiks" HorizontalAlignment="Left" Height="183" Margin="419,90,0,0" VerticalAlignment="Top" Width="157" Source="/Resources/3drotiks.png"/>
+        <Image x:Name="remainingDrotiks" HorizontalAlignment="Left" Height="222" Margin="419,90,0,0" VerticalAlignment="Top" Width="220" Source="/Resources/3drotiks.png"/>
     </Grid>
 </Page>
