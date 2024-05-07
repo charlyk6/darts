@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:darts.Pages"
         mc:Ignorable="d"
         Title="UserWindow" Height="350" Width="300"
-        Icon="D:\Projects\darts\darts\Resources\userImage2.png"
+        Icon="/Resources/userImage2.png"
         >
     <Window.Resources>
         <Style TargetType="TextBlock">

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:darts.Pages"
         mc:Ignorable="d"       
-        Title="Дартс" Height="800" Width="1550"  Icon="D:\Projects\darts\darts\Resources\mishenIco.ico"
+        Title="Дартс" Height="800" Width="1550"  Icon="/Resources/mishenIco.ico"
         WindowStartupLocation="CenterScreen" 
         WindowState="Maximized"
         >

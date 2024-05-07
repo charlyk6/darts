@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:darts.Pages"
         mc:Ignorable="d"
         Title="NewGameModalWindow" Height="200" Width="320"
-        Icon="D:\Projects\darts\darts\Resources\znakIco.png"
+        Icon="/Resources/znakIco.png"
         >
     <Grid Margin="0,0,0,-6">
         <Label Content="У вас уже есть незавершенная игра" HorizontalAlignment="Center" Height="34" Margin="0,10,0,0" VerticalAlignment="Top" Width="242" FontSize="14"/>
