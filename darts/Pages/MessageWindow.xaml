@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:darts.Pages"
         mc:Ignorable="d"
-        Title="Внимание" Height="200" Width="250">
+        Title="Внимание" Height="200" Width="250"
+        Icon="D:\Projects\darts\darts\Resources\znakIco.png"
+        >
     <Grid>
         <Label x:Name="Message" Content="Label" HorizontalAlignment="Center" Margin="0,26,0,0" VerticalAlignment="Top" FontSize="12"/>
         <Button Content="Ок" HorizontalAlignment="Center" Height="24" Margin="0,128,0,0" VerticalAlignment="Top" Width="84" Click="buttonClick"/>

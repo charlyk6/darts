@@ -6,7 +6,9 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:darts.Pages"
         mc:Ignorable="d"
-        Title="UserWindow" Height="350" Width="300">
+        Title="UserWindow" Height="350" Width="300"
+        Icon="D:\Projects\darts\darts\Resources\userImage2.png"
+        >
     <Window.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="Margin" Value="8" />

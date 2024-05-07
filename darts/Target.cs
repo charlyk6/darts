@@ -47,15 +47,15 @@ namespace darts
                 corn += 360;
             }
             throwResult.points = sectors[(int)corn / 9];
-            if (r <= 87 && r >= 77)
+            if (r <= 89 && r >= 76)
             {
                 throwResult.mult = 3;
             }
-            else if (r <= 142 && r >= 131)
+            else if (r <= 145 && r >= 130)
             {
                 throwResult.mult = 2;
             }
-            else if (r > 142)
+            else if (r > 145)
             {
                 throwResult.mult = 0;
             }

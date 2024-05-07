@@ -5,7 +5,9 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:darts.Pages.Games"
       mc:Ignorable="d"
-      Title="darts" Width="1350" Height="800">
+      Title="Дартс" Width="1350" Height="800"
+      KeyDown="keyDown"
+      >
     <Page.Background>
         <ImageBrush ImageSource="\Resources\fon.jpg" Stretch="Fill" />
     </Page.Background>
@@ -32,7 +34,7 @@
 
         <Image x:Name="aimScale" HorizontalAlignment="Left" Height="49" Margin="704,446,0,0" VerticalAlignment="Top" Width="350" Source="/Pages/Game/aim.png"/>
         <Image x:Name ="aim" HorizontalAlignment="Left" Height="49" Margin="704,446,0,0" VerticalAlignment="Top" Width="14" Source="/Resources/strelka.png"/>
-        <Button x:Name ="StopButton" Content="Стоп" HorizontalAlignment="Left" Height="138" Margin="1127,470,0,0" VerticalAlignment="Top" Width="138" FontSize="20" PreviewMouseLeftButtonDown="stopClick" Background="#FFFF0B0B" Foreground="White">
+        <Button x:Name ="StopButton" Content="Стоп" HorizontalAlignment="Left" Height="138" Margin="1127,470,0,0" VerticalAlignment="Top" Width="138" FontSize="28" PreviewMouseLeftButtonDown="stopClick" Background="#FFFF0B0B" Foreground="White">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Template">

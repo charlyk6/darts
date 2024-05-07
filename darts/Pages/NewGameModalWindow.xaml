@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:darts.Pages"
         mc:Ignorable="d"
-        Title="NewGameModalWindow" Height="200" Width="320">
+        Title="NewGameModalWindow" Height="200" Width="320"
+        Icon="D:\Projects\darts\darts\Resources\znakIco.png"
+        >
     <Grid Margin="0,0,0,-6">
         <Label Content="У вас уже есть незавершенная игра" HorizontalAlignment="Center" Height="34" Margin="0,10,0,0" VerticalAlignment="Top" Width="242" FontSize="14"/>
         <Label Content="Хотите продолжить или начать заново?" HorizontalAlignment="Center" Height="37" Margin="0,49,0,0" VerticalAlignment="Top" Width="269" FontSize="14"/>

@@ -42,6 +42,8 @@ namespace darts.Pages
             }
             //TODO: сделать проверку на наличие игррррр
             gamePage = new GamePage();
+            gamePage.Focusable = true;
+            gamePage.Focus();
             MainFrame.NavigationService.Navigate(gamePage);
         }
 

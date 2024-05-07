@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
@@ -440,6 +441,10 @@ namespace darts.Pages.Games
 
         public void stopClick(object sender, RoutedEventArgs e)
         {
+            stopClickAction();
+        }
+        private void stopClickAction()
+        {
             switch (curScale)
             {
                 case 0:
@@ -464,6 +469,12 @@ namespace darts.Pages.Games
                     break;
             }
         }
-
+        public void keyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key == System.Windows.Input.Key.Space)
+            {
+                stopClickAction();
+            }
+        }
     }
 }

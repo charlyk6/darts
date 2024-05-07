@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:darts.Pages"
         mc:Ignorable="d"       
-        Title="darts" Height="800" Width="1550" 
-        WindowStartupLocation="CenterScreen"        >
+        Title="Дартс" Height="800" Width="1550"  Icon="D:\Projects\darts\darts\Resources\mishenIco.ico"
+        WindowStartupLocation="CenterScreen" 
+        WindowState="Maximized"
+        >
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200" />
@@ -16,13 +18,13 @@
             <ListView Grid.Column="0" >
                 <StackPanel Orientation="Horizontal" Width="180">
                     <Image></Image>
-                    <Button Name="Settings" Width="180" Click="SettingsButton_OnClick" Margin="2" FontSize="16">
+                    <Button Name="Settings" Width="175" Click="SettingsButton_OnClick" Margin="2" FontSize="18">
                         Настройки
                     </Button>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Width="180">
 
-                    <Button Name="Game" Width="180" Click="GameButton_OnClick" Margin="2" FontSize="16">
+                    <Button Name="Game" Width="175" Click="GameButton_OnClick" Margin="2" FontSize="18">
                         Игра
                     </Button>
                 </StackPanel>
