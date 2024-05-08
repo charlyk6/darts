@@ -362,13 +362,15 @@ namespace darts.Pages.Games
                     case darts.db.Enums.Level.Easy:
                         //в любом случае засчитываем бросок
                         scores -= throwResult.points;
-                        usersGame.Scores = scores;
-                        usersGame.NumberThrow++;
                         playerScores[indexCurrentPlayer].Scores -= throwResult.points;
                         if (scores <= 0)
                         {
+                            scores = 0;
+                            playerScores[indexCurrentPlayer].Scores = 0;
                             result = true;
                         }
+                        usersGame.Scores = scores;
+                        usersGame.NumberThrow++;
 
                         break;
                     case darts.db.Enums.Level.Medium:
